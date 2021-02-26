@@ -261,7 +261,7 @@ public class MazeGenerator : MonoBehaviour
     }
 
 
-    bool CheckCellUnvisited(int i, int j)//true = unvisited
+    bool CheckCellUnvisited(int i, int j)//true = unvisited (grid 10/5 throws index out of bounds)
     {
         bool CellUnvisited = true;
 
