@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657797, g: 0.4964124, b: 0.57481766, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465775, g: 0.49641156, b: 0.5748169, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -589,7 +589,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685734823}
-  m_LocalRotation: {x: 0.11069575, y: 0.0000000042751584, z: -4.7616827e-10, w: 0.99385434}
+  m_LocalRotation: {x: 0.11069575, y: 0.0000000042751593, z: -4.761684e-10, w: 0.99385434}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2244dc56d7b11495bbd7631addbdfa87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 2672719679731767850, guid: ceb63e5d836864ae7b4e821b84c81421, type: 3}
+  wall: {fileID: 6806756533729592425, guid: af8b5df6b4bf746e487597cc2dff98b5, type: 3}
   floor: {fileID: 4677108683687629600, guid: 53c4049e14e6d4589a0afacd85e9469a, type: 3}
   mazeWidth: 10
   mazeHeight: 10
