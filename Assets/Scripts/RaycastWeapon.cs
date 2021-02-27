@@ -14,6 +14,8 @@ public class RaycastWeapon : MonoBehaviour
 
     public bool isFiring = false;
     public int fireRate = 25;
+    public float damageAmount;
+    public DamageType damageType;
     public float bulletSpeed = 1000;
     public float bulletDrop = 0.0f;
     public ParticleSystem muzzleFlash;
@@ -28,7 +30,7 @@ public class RaycastWeapon : MonoBehaviour
     RaycastHit hitInfo;
     float accumulatedTime;
     List<Bullet> bullets = new List<Bullet>();
-    float bulletsMaxLifeTime = 3.0f; 
+    float bulletsMaxLifeTime = 1.0f; 
 
     Vector3 GetPosition(Bullet bullet)
     {
@@ -99,7 +101,17 @@ public class RaycastWeapon : MonoBehaviour
 
             hitEffect.transform.position = hitInfo.point;
             hitEffect.transform.forward = hitInfo.normal;
+
+            EnemyHealth enemyHealth;
+            if (enemyHealth = hitInfo.transform.GetComponent<EnemyHealth>())
+            {
+                enemyHealth.TakeDamage(damageAmount, damageType,hitInfo);
+                
+            }
+            
             hitEffect.Emit(1);
+            
+
             bullet.tracer.transform.position = hitInfo.point;
             bullet.time = bulletsMaxLifeTime;
         }

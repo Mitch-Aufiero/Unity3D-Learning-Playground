@@ -32,7 +32,9 @@ public class Spawner : MonoBehaviour
     
     void Spawn()
     {
-        
+        if (totalSpawnCount >= maxSpawns)
+            Destroy(this);
+
         if(totalSpawnCount< maxSpawns || maxSpawns == -1)
         {
             totalSpawnCount++;
