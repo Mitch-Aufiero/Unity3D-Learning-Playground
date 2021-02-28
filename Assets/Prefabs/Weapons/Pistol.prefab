@@ -50,7 +50,7 @@ MonoBehaviour:
   isFiring: 0
   fireRate: 1
   damageAmount: 5
-  damageType: {fileID: 0}
+  damageType: {fileID: 11400000, guid: 62e7cb2b05ea14c42bf97e369eddd900, type: 2}
   bulletSpeed: 1000
   bulletDrop: 0
   muzzleFlash: {fileID: 5307252678817728853}
@@ -59,6 +59,7 @@ MonoBehaviour:
   weaponEquipAnimation: {fileID: 7400000, guid: fee217599573dd84a8a577bfc8cbc7bb, type: 2}
   raycastOrigin: {fileID: 5433420498259387590}
   raycastDestination: {fileID: 0}
+  weaponAnimName: pistol
 --- !u!1 &4826230553938100862
 GameObject:
   m_ObjectHideFlags: 0

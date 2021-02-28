@@ -6,7 +6,6 @@ public class CharacterAiming : MonoBehaviour
 {
     public float turnSpeed = 15;
     public float aimDuration = .3f;
-    public Rig aimLayer;
     Camera myCamera;
 
 
@@ -29,20 +28,6 @@ public class CharacterAiming : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (aimLayer)
-        {
-            /*if (Input.GetButton("Fire2"))
-            {
-                aimLayer.weight += Time.deltaTime / aimDuration;
-            }
-            else
-            {
-                aimLayer.weight -= Time.deltaTime / aimDuration;
-            }
-            */
-
-            aimLayer.weight = 1.0f;
-
-        }
+        
     }
 }

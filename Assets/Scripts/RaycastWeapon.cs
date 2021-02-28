@@ -24,6 +24,7 @@ public class RaycastWeapon : MonoBehaviour
     public AnimationClip weaponEquipAnimation;
     public Transform raycastOrigin;
     public Transform raycastDestination;
+    public string weaponAnimName;
 
 
     Ray ray;

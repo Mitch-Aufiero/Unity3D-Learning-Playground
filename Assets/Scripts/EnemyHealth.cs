@@ -12,11 +12,15 @@ public class EnemyHealth : MonoBehaviour
     public Slider healthSlider;
     public DamageType[] VulnerableDamageTypes;
     public ParticleSystem vulnerableParticle;
+    Camera cameraMain;
+
+  
 
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+        cameraMain = Camera.main;
     }
 
 
@@ -73,5 +77,12 @@ public class EnemyHealth : MonoBehaviour
 
         Destroy(gameObject);
     }
-    
+
+
+    private void LateUpdate()// look into less taxing way of updating canvas. InvokeRepeating?
+    {
+
+            healthBarUI.transform.LookAt(transform.position + cameraMain.transform.rotation * Vector3.back, cameraMain.transform.rotation * Vector3.up);
+
+    }
 }

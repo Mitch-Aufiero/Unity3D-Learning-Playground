@@ -59,6 +59,7 @@ MonoBehaviour:
   weaponEquipAnimation: {fileID: 7400000, guid: d2de311cb5c9825478bd38273c9e0a00, type: 2}
   raycastOrigin: {fileID: 2998387543096793979}
   raycastDestination: {fileID: 0}
+  weaponAnimName: rifle
 --- !u!1 &1072558156488761105
 GameObject:
   m_ObjectHideFlags: 0
