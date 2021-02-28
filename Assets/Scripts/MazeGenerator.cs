@@ -15,6 +15,8 @@ public class MazeGenerator : MonoBehaviour
     public GameObject[] CoridorSpawns;
     public GameObject[] HallSpawns;
 
+    public GameObject PlayerCharacter;
+
 
     struct Cell // (dead end 3 walls, hall 2 walls, coridor 1 wall
     {
@@ -34,7 +36,6 @@ public class MazeGenerator : MonoBehaviour
     GameObject MazeGrid;
     bool mazeMapped;
 
-    // Start is called before the first frame update
     IEnumerator Start()
     {
         Random.InitState(seed);
@@ -46,14 +47,6 @@ public class MazeGenerator : MonoBehaviour
         MapMaze();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-       
-            
-
-    }
 
 
     void CreateGrid()
@@ -168,14 +161,20 @@ public class MazeGenerator : MonoBehaviour
         } while ((Carver.Count > 0));
     }
 
-
-    void MapMaze()
+    void ChoosePlayerSpawnCell(Transform cell, Vector3 orientation)// fix orientation, camera is getting things off since character is set based on camera
     {
-        /*
-         *  
-         *  
-         *   
-         */
+
+        PlayerCharacter.transform.position = cell.position;
+        PlayerCharacter.transform.localRotation = Quaternion.Euler(orientation);
+
+
+    }
+    
+
+
+    void MapMaze()// its hard to stay clean when its procedural
+    {
+        bool playerSpawnChosen = false;
 
 
         foreach (Transform mazeCell in MazeGrid.transform)
@@ -189,8 +188,7 @@ public class MazeGenerator : MonoBehaviour
                     List<Vector3> missingWallsDirections = new List<Vector3>();
 
                     // Does the ray intersect any objects excluding the player layer
-                    if (Physics.Raycast(new Vector3(rayOriginator.transform.position.x, rayOriginator.transform.position.y + 1, rayOriginator.transform.position.z)
-                        , transform.TransformDirection(Vector3.forward), 5f))
+                    if (Physics.Raycast(rayOriginator.transform.position, transform.TransformDirection(Vector3.forward), 5f))
                     {
                         wallCount++;
                         remainingWallsDirections.Add(new Vector3(0, 90, 0));
@@ -199,8 +197,7 @@ public class MazeGenerator : MonoBehaviour
                     {
                         missingWallsDirections.Add(new Vector3(0, 90, 0));
                     }
-                    if (Physics.Raycast(new Vector3(rayOriginator.transform.position.x, rayOriginator.transform.position.y + 1, rayOriginator.transform.position.z)
-                        , transform.TransformDirection(Vector3.back), 5f))
+                    if (Physics.Raycast(rayOriginator.transform.position, transform.TransformDirection(Vector3.back), 5f))
                     {
                         wallCount++;
                         remainingWallsDirections.Add(new Vector3(0, -90, 0));
@@ -209,8 +206,7 @@ public class MazeGenerator : MonoBehaviour
                     {
                         missingWallsDirections.Add(new Vector3(0, -90, 0));
                     }
-                    if (Physics.Raycast(new Vector3(rayOriginator.transform.position.x, rayOriginator.transform.position.y + 1, rayOriginator.transform.position.z)
-                                            , transform.TransformDirection(Vector3.left), 5f))
+                    if (Physics.Raycast(rayOriginator.transform.position, transform.TransformDirection(Vector3.left), 5f))
                     {
                         wallCount++;
                         remainingWallsDirections.Add(new Vector3(0, 0, 0));
@@ -219,8 +215,7 @@ public class MazeGenerator : MonoBehaviour
                     {
                         missingWallsDirections.Add(new Vector3(0, 0, 0));
                     }
-                    if (Physics.Raycast(new Vector3(rayOriginator.transform.position.x, rayOriginator.transform.position.y + 1, rayOriginator.transform.position.z)
-                        , transform.TransformDirection(Vector3.right), 5f))
+                    if (Physics.Raycast(rayOriginator.transform.position, transform.TransformDirection(Vector3.right), 5f))
                     {
                         wallCount++;
                         remainingWallsDirections.Add(new Vector3(0, 180, 0));
@@ -236,8 +231,21 @@ public class MazeGenerator : MonoBehaviour
                     if(cellType == "DeadEnd")
                     {
                         int index = Random.Range(0, missingWallsDirections.Count);
-                        SpawnRandomObject(DeadEndSpawns, rayOriginator.gameObject, new Vector3(0, .5f, 0),
-                            new Vector3(missingWallsDirections[index].x, missingWallsDirections[index].y -180, missingWallsDirections[index].z));
+
+                        if (!playerSpawnChosen)// if there's not a dead end what happens? lol
+                        {
+                            playerSpawnChosen = true;
+
+                            ChoosePlayerSpawnCell(rayOriginator, new Vector3(missingWallsDirections[index].x, missingWallsDirections[index].y, missingWallsDirections[index].z));
+                        }
+                        else
+                        {
+                           
+                            SpawnRandomObject(DeadEndSpawns, rayOriginator.gameObject, new Vector3(0, .5f, 0),
+                            new Vector3(missingWallsDirections[index].x, missingWallsDirections[index].y - 180, missingWallsDirections[index].z));
+
+                        }
+
                     }
                     if(cellType == "Coridor")
                     {
@@ -328,7 +336,7 @@ public class MazeGenerator : MonoBehaviour
     void SpawnRandomObject(GameObject[] gameObjects, GameObject spawnCell, Vector3 offset, Vector3 orientation)
     {
         GameObject gameObject = gameObjects[Random.Range(0, gameObjects.Length)];
-        ;
+        
         gameObject = Instantiate(gameObject, new Vector3(0, 0, 1), Quaternion.identity);
         gameObject.transform.localRotation = Quaternion.Euler(orientation);
         gameObject.transform.localPosition = new Vector3(spawnCell.transform.position.x + offset.x , spawnCell.transform.position.y + offset.y, spawnCell.transform.position.z + offset.z);
