@@ -9,15 +9,19 @@ public class RaycastWeapon : MonoBehaviour
         public float time;
         public Vector3 initPosition;
         public Vector3 initVelocity;
+        public int bounce;
         public TrailRenderer tracer;
     }
 
+    public ActiveWeapon.WeaponSlot weaponSlot;
     public bool isFiring = false;
     public int fireRate = 25;
     public float damageAmount;
     public DamageType damageType;
     public float bulletSpeed = 1000;
     public float bulletDrop = 0.0f;
+    public int maxBounces = 0;
+    public int impulseForce = 10;
     public ParticleSystem muzzleFlash;
     public ParticleSystem hitEffect;
     public TrailRenderer tracerEffect;
@@ -33,6 +37,23 @@ public class RaycastWeapon : MonoBehaviour
     List<Bullet> bullets = new List<Bullet>();
     float bulletsMaxLifeTime = 1.0f; 
 
+    public void UpdateWeapon(float deltaTime)
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            StartFiring();
+        }
+        if (isFiring)
+        {
+            UpdateFiring(deltaTime);
+        }
+        UpdateBullets(deltaTime);
+        if (Input.GetButtonUp("Fire1"))
+        {
+            StopFiring();
+        }
+    }
+
     Vector3 GetPosition(Bullet bullet)
     {
         Vector3 gravity = Vector3.down * bulletDrop;
@@ -47,6 +68,7 @@ public class RaycastWeapon : MonoBehaviour
         bullet.time = 0.0f;
         bullet.tracer = Instantiate(tracerEffect, position, Quaternion.identity);
         bullet.tracer.AddPosition(position);
+        bullet.bounce = maxBounces;
         return bullet;
     }
 
@@ -102,6 +124,7 @@ public class RaycastWeapon : MonoBehaviour
 
             hitEffect.transform.position = hitInfo.point;
             hitEffect.transform.forward = hitInfo.normal;
+            bullet.time = bulletsMaxLifeTime;
 
             EnemyHealth enemyHealth;
             if (enemyHealth = hitInfo.transform.GetComponent<EnemyHealth>())
@@ -109,12 +132,29 @@ public class RaycastWeapon : MonoBehaviour
                 enemyHealth.TakeDamage(damageAmount, damageType,hitInfo);
                 
             }
+
+
+            // bullet ricochet
+            if(bullet.bounce > 0)
+            {
+                bullet.time = 0;
+                bullet.initPosition = hitInfo.point;
+                bullet.initVelocity = Vector3.Reflect(bullet.initVelocity, hitInfo.normal);
+                bullet.bounce--;
+            }
+            
+            //collision impulse
+            var rb2d = hitInfo.collider.GetComponent<Rigidbody>();
+            if (rb2d)
+            {
+                rb2d.AddForceAtPosition(ray.direction * impulseForce, hitInfo.point, ForceMode.Impulse);
+            }
             
             hitEffect.Emit(1);
             
 
             bullet.tracer.transform.position = hitInfo.point;
-            bullet.time = bulletsMaxLifeTime;
+            
         }
         else
         {
