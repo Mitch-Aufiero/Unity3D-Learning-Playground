@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a7289c96b8a4c15bdbd9d84bf8c94b, type: 3}
+  m_Name: PistolGenerator
+  m_EditorClassIdentifier: 
+  weaponBases:
+  - {fileID: 5433420497032039792, guid: 516216f3314438243812a06ab37767e1, type: 3}
+  damageTypes:
+  - {fileID: 11400000, guid: 62e7cb2b05ea14c42bf97e369eddd900, type: 2}
+  weaponLevel: 1

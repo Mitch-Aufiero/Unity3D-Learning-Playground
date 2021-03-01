@@ -54,6 +54,8 @@ MonoBehaviour:
   damageType: {fileID: 11400000, guid: 62e7cb2b05ea14c42bf97e369eddd900, type: 2}
   bulletSpeed: 1000
   bulletDrop: 0
+  maxBounces: 0
+  impulseForce: 10
   muzzleFlash: {fileID: 5307252678817728853}
   hitEffect: {fileID: 4628757883380074710}
   tracerEffect: {fileID: 218802141758001083, guid: 950c1f533d3f0074694822868b2dcc52, type: 3}
