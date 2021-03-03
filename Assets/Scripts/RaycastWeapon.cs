@@ -98,12 +98,19 @@ public class RaycastWeapon : MonoBehaviour
     public void UpdateFiring(float deltaTime)
     {
         accumulatedTime += deltaTime;
-        float fireInterval = 1.0f / fireRate;
+        
+        float fireInterval = 1.0f / fireRate ;
+
+        
         while (accumulatedTime >= 0.0f)
         {
             FireBullet();
             accumulatedTime -= fireInterval;
+
+
+
         }
+        
     }
 
     public void StartFiring()
