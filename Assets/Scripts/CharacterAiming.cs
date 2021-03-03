@@ -5,7 +5,7 @@ using UnityEngine.Animations.Rigging;
 public class CharacterAiming : MonoBehaviour
 {
     public float turnSpeed = 15;
-    public float aimDuration = .3f;
+    //public float aimDuration = .3f;
     Camera myCamera;
 
 

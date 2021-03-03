@@ -233,7 +233,7 @@ MonoBehaviour:
   healthBarUI: {fileID: 7689618296837174491}
   healthSlider: {fileID: 7689618297956083544}
   VulnerableDamageTypes:
-  - {fileID: 11400000, guid: 62e7cb2b05ea14c42bf97e369eddd900, type: 2}
+  - {fileID: 11400000, guid: 87b389376108e0d4b90c580da7093543, type: 2}
   vulnerableParticle: {fileID: 692762356285727210}
 --- !u!114 &-6887082659198282
 MonoBehaviour:

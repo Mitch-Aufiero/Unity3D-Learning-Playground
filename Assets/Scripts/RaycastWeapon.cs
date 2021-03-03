@@ -28,6 +28,8 @@ public class RaycastWeapon : MonoBehaviour
     public AnimationClip weaponEquipAnimation;
     public Transform raycastOrigin;
     public Transform raycastDestination;
+    public WeaponRecoil recoil;
+
     public string weaponAnimName;
 
 
@@ -35,7 +37,26 @@ public class RaycastWeapon : MonoBehaviour
     RaycastHit hitInfo;
     float accumulatedTime;
     List<Bullet> bullets = new List<Bullet>();
-    float bulletsMaxLifeTime = 1.0f; 
+    float bulletsMaxLifeTime = 1.0f;
+
+
+    private void Awake()
+    {
+        recoil = GetComponent<WeaponRecoil>();
+    }
+
+
+    private void FireBullet()
+    {
+        muzzleFlash.Emit(1);
+
+        Vector3 velocity = (raycastDestination.position - raycastOrigin.position).normalized * bulletSpeed;
+        var bullet = CreateBullet(raycastOrigin.position, velocity);
+        bullets.Add(bullet);
+
+        recoil.GenerateRecoil(weaponAnimName);
+
+    }
 
     public void UpdateWeapon(float deltaTime)
     {
@@ -53,6 +74,8 @@ public class RaycastWeapon : MonoBehaviour
             StopFiring();
         }
     }
+
+   
 
     Vector3 GetPosition(Bullet bullet)
     {
@@ -88,6 +111,7 @@ public class RaycastWeapon : MonoBehaviour
         isFiring = true;
         accumulatedTime = 0.0f;
         FireBullet();
+        recoil.Reset();
 
     }
     
@@ -162,17 +186,6 @@ public class RaycastWeapon : MonoBehaviour
         }
     }
 
-    private void FireBullet()
-    {
-        muzzleFlash.Emit(1);
-
-        Vector3 velocity = (raycastDestination.position - raycastOrigin.position).normalized * bulletSpeed;
-        var bullet = CreateBullet(raycastOrigin.position, velocity);
-        bullets.Add(bullet);
-
-     
-       
-    }
 
     public void StopFiring()
     {

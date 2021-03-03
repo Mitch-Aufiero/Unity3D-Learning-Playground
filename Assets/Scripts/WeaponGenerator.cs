@@ -24,7 +24,7 @@ public class WeaponGenerator : ScriptableObject
 
         generatedWeapon.damageType = damageTypes[damageTypeIndex];
 
-        bool hasBounce = Random.Range(0, 1) > 0;
+        bool hasBounce = (int)Random.Range(0, 5) == 0; // 1 in 6 chance of having bounce
         if (hasBounce)
         {
             generatedWeapon.maxBounces = 3;
