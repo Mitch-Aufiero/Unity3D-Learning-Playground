@@ -157,6 +157,11 @@ public class RaycastWeapon : MonoBehaviour
             hitEffect.transform.forward = hitInfo.normal;
             bullet.time = bulletsMaxLifeTime;
 
+
+            bullet.tracer.transform.position = hitInfo.point;
+
+            hitEffect.Emit(1);
+
             EnemyHealth enemyHealth;
             if (enemyHealth = hitInfo.transform.GetComponent<EnemyHealth>())
             {
@@ -168,6 +173,7 @@ public class RaycastWeapon : MonoBehaviour
             // bullet ricochet
             if(bullet.bounce > 0)
             {
+                Debug.Log(bullet.bounce);
                 bullet.time = 0;
                 bullet.initPosition = hitInfo.point;
                 bullet.initVelocity = Vector3.Reflect(bullet.initVelocity, hitInfo.normal);
@@ -181,10 +187,7 @@ public class RaycastWeapon : MonoBehaviour
                 rb2d.AddForceAtPosition(ray.direction * impulseForce, hitInfo.point, ForceMode.Impulse);
             }
             
-            hitEffect.Emit(1);
             
-
-            bullet.tracer.transform.position = hitInfo.point;
             
         }
         else
