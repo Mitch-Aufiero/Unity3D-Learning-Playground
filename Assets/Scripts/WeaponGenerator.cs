@@ -27,6 +27,7 @@ public class WeaponGenerator : ScriptableObject
         bool hasBounce = (int)Random.Range(0, 5) == 0; // 1 in 6 chance of having bounce
         if (hasBounce)
         {
+            Debug.Log("bouncy");
             generatedWeapon.maxBounces = 3;
         }
 
