@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Combat;
 
 [CreateAssetMenu(menuName = "DungeonRPScripts/Weapon Generator")]
 public class WeaponGenerator : ScriptableObject

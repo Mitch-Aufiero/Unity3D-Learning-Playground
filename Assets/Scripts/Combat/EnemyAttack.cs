@@ -27,6 +27,7 @@ public class EnemyAttack : MonoBehaviour
             // play animation
             // send damage struct to player health script
 
+            StartCoroutine(AttackCooldown());
         }
     }
 
