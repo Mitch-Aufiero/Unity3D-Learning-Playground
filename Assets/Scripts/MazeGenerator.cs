@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MazeGenerator : MonoBehaviour
 {
-    
+
     public GameObject wall;
     public GameObject floor;
     public int mazeWidth;
@@ -45,6 +46,7 @@ public class MazeGenerator : MonoBehaviour
 
         yield return new WaitForFixedUpdate();
         MapMaze();
+        NavMeshBuilder.BuildNavMesh();
     }
 
 

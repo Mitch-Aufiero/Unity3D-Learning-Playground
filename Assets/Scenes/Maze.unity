@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465775, g: 0.49641156, b: 0.5748169, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657797, g: 0.4964124, b: 0.57481766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -755,9 +755,6 @@ MonoBehaviour:
   mazeHeight: 5
   seed: 65
   DeadEndSpawns:
-  - {fileID: 1151982995772894781, guid: 1414f8b1850ec45de9a47b365430c0ca, type: 3}
-  - {fileID: 3057458779938948237, guid: 9020d483db8e92e44a4d1bc1533ac431, type: 3}
-  - {fileID: 6475440804302829913, guid: 9c11c181b9383421fb33080e0061f3be, type: 3}
   - {fileID: 8126350200475101657, guid: a15de3975464148e6af2ffac6bda213a, type: 3}
   CoridorSpawns:
   - {fileID: 7834902014348958954, guid: 56ad2d1c94566491d97c37f0338325ab, type: 3}
@@ -2555,7 +2552,7 @@ GameObject:
   - component: {fileID: 587285693861983734}
   m_Layer: 0
   m_Name: SM_Character_Female_01 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5301,8 +5298,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6248172308078905955}
-  m_LocalRotation: {x: -0.3958161, y: 0.000000015801135, z: 0.0000000068105646, w: 0.91832983}
-  m_LocalPosition: {x: 0, y: 0.4000034, z: -1.300005}
+  m_LocalRotation: {x: 0.3763885, y: 0.00000001800228, z: -0.000000007313685, w: 0.92646194}
+  m_LocalPosition: {x: 0, y: 4.128551, z: -2.255118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 619822278}

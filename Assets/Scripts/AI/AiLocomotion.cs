@@ -3,26 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SpiderMovement : MonoBehaviour
+public class AiLocomotion : MonoBehaviour
 {
-    // if leg is ready to move(idk how to tell this)
-    // start coroutine of removing leg rig weight once done set target to new position(cast ray) set weight back to 1
 
     public Transform target;
     NavMeshAgent agent;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        agent.SetDestination(target.position);
-
+        if (agent.hasPath) { 
+            animator.SetFloat("Speed", agent.velocity.magnitude);
+        } else
+        {
+            animator.SetFloat("Speed", 0);
+        }
     }
-        
-
 }
