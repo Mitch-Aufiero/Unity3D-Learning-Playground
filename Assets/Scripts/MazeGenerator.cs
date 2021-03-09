@@ -17,6 +17,7 @@ public class MazeGenerator : MonoBehaviour
     public GameObject[] HallSpawns;
 
     public GameObject PlayerCharacter;
+    public List<NavMeshSurface> navSurfaces;
 
 
     struct Cell // (dead end 3 walls, hall 2 walls, coridor 1 wall
@@ -40,13 +41,15 @@ public class MazeGenerator : MonoBehaviour
     IEnumerator Start()
     {
         Random.InitState(seed);
-        MazeGrid =  new GameObject("MazeGrid");
+        MazeGrid = this.gameObject;
         CreateGrid();
         CarveMaze();
+        
 
         yield return new WaitForFixedUpdate();
         MapMaze();
-        NavMeshBuilder.BuildNavMesh();
+        BakeNavMesh();
+
     }
 
 
@@ -95,6 +98,7 @@ public class MazeGenerator : MonoBehaviour
 
                     Floor.transform.SetParent(MazeCell.transform);
                     Floor.name = "Floor";
+                    navSurfaces.Add(floor.GetComponent<NavMeshSurface>());
                 }
 
                 Grid[i, j] = new Cell(Wall, RotWall, Floor);
@@ -270,6 +274,13 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
+    void BakeNavMesh()
+    {
+        foreach(NavMeshSurface surface in navSurfaces)
+        {
+            surface.BuildNavMesh();
+        }
+    }
 
     bool CheckCellUnvisited(int i, int j)//true = unvisited (grid 10/5 throws index out of bounds)
     {

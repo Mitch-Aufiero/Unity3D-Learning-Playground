@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657797, g: 0.4964124, b: 0.57481766, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465775, g: 0.49641156, b: 0.5748169, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.128551, z: -2.255118}
+  m_FollowOffset: {x: 0, y: 4.232667, z: -2.14254}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.128551, z: -2.255118}
+  m_FollowOffset: {x: 0, y: 4.232667, z: -2.14254}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -766,6 +766,7 @@ MonoBehaviour:
   - {fileID: 3059403770070203717, guid: cf5f2299af27240d6802609c8d55f47e, type: 3}
   - {fileID: 4764220064631625134, guid: 21a91b291588e4ce7be183d8d1cfe7fa, type: 3}
   PlayerCharacter: {fileID: 6248172308069293531}
+  navSurfaces: []
 --- !u!4 &918694372
 Transform:
   m_ObjectHideFlags: 0
@@ -5220,7 +5221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6248172308069293531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 114.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 591042632556859755}
@@ -5298,8 +5299,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6248172308078905955}
-  m_LocalRotation: {x: 0.3763885, y: 0.00000001800228, z: -0.000000007313685, w: 0.92646194}
-  m_LocalPosition: {x: 0, y: 4.128551, z: -2.255118}
+  m_LocalRotation: {x: 0.29811835, y: -2.4271335e-15, z: 6.679263e-16, w: 0.9545289}
+  m_LocalPosition: {x: 0, y: 3.700053, z: -2.61944}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 619822278}
@@ -5435,7 +5436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.128551, z: -2.255118}
+  m_FollowOffset: {x: 0, y: 4.232667, z: -2.14254}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
