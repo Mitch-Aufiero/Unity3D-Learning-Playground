@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2284772330211680474}
   - component: {fileID: 2284772330211680477}
   - component: {fileID: 2284772330211680473}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponPickup_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 3156919887543524317, guid: fbe4abeaab6bac445a6d2189b16e39b6, type: 3}
+  generator: {fileID: 0}
 --- !u!1 &2284772330830276069
 GameObject:
   m_ObjectHideFlags: 0

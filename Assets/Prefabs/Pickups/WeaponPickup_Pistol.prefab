@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2891646149603627090}
   - component: {fileID: 2891646149603627091}
   - component: {fileID: 2891646149603627180}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponPickup_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 5433420497032039792, guid: 516216f3314438243812a06ab37767e1, type: 3}
+  generator: {fileID: 0}
 --- !u!1 &4816989692812783884
 GameObject:
   m_ObjectHideFlags: 0

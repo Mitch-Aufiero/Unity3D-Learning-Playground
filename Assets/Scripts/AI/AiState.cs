@@ -5,7 +5,9 @@ using UnityEngine;
 public enum AiStateID
 {
     ChasePlayer,
-    Death
+    Death,
+    Wander,
+    AttackPlayer
 }
 
 public interface AiState 

@@ -18,6 +18,8 @@ public class MazeGenerator : MonoBehaviour
 
     public GameObject PlayerCharacter;
     public NavMeshGenerator navGenerator;
+    public WorldBounds bounds;
+
 
 
     struct Cell // (dead end 3 walls, hall 2 walls, coridor 1 wall
@@ -40,6 +42,13 @@ public class MazeGenerator : MonoBehaviour
 
     IEnumerator Start()
     {
+
+        float mazeOffset = wall.transform.localScale.x;
+
+        bounds.min.position = new Vector3(0, 1, 0);
+        bounds.max.position = new Vector3(mazeWidth *mazeOffset, 1, mazeHeight * mazeOffset);
+    
+
         navGenerator = GetComponent<NavMeshGenerator>();
         Random.InitState(seed);
         MazeGrid = this.gameObject;
