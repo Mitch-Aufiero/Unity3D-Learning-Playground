@@ -16,6 +16,9 @@ public class AiLocomotion : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
+
+
+        agent.enabled = true;
     }
 
     // Update is called once per frame

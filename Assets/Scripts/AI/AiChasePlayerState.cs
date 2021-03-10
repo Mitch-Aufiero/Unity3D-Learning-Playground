@@ -25,18 +25,19 @@ public class AiChasePlayerState : AiState
             return;
         }
 
-        timer = Time.deltaTime;
+        timer -= Time.deltaTime;
         if (!agent.navMeshAgent.hasPath)
         {
             agent.navMeshAgent.destination = playerTransform.position;
         }
+
         if (timer < 0.0f)
         {
             Vector3 direction = (playerTransform.position - agent.navMeshAgent.destination);
             direction.y = 0;
-            if(direction.sqrMagnitude > agent.config.maxDistance * agent.config.maxDistance)
+            //if(direction.sqrMagnitude > agent.config.maxDistance * agent.config.maxDistance)
             {
-                if(agent.navMeshAgent.pathStatus != UnityEngine.AI.NavMeshPathStatus.PathPartial)
+              //  if(agent.navMeshAgent.pathStatus != UnityEngine.AI.NavMeshPathStatus.PathPartial)
                 {
                     agent.navMeshAgent.destination = playerTransform.position;
                 }

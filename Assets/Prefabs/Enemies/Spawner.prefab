@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b55ae550bf84de5ba28fafea970139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawnable: {fileID: 7689618297111438534, guid: 4c84e4c0b4cfe4fcf83c9b757314c003, type: 3}
+  Spawnable: {fileID: 5201412033894205680, guid: 42c053420ffbf485c98990098ba0bbcf, type: 3}
   frequency: 3
   maxSpawns: 3
 --- !u!114 &8088408906443847779

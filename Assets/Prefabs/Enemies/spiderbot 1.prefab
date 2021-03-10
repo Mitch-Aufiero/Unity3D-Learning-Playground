@@ -1266,7 +1266,6 @@ GameObject:
   - component: {fileID: 4856270195364500042}
   - component: {fileID: 1550606991414085680}
   - component: {fileID: 5201412033894205679}
-  - component: {fileID: 3317157173755285086}
   - component: {fileID: 6576114075056909785}
   - component: {fileID: 6576114075056909786}
   - component: {fileID: 5835173984709217917}
@@ -1274,6 +1273,7 @@ GameObject:
   - component: {fileID: 844916663085010388}
   - component: {fileID: 6576114075056909787}
   - component: {fileID: 6576114075056909788}
+  - component: {fileID: 470932277}
   m_Layer: 0
   m_Name: spiderbot 1
   m_TagString: Untagged
@@ -1289,7 +1289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5201412033894205680}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.303555, y: -0.186, z: -1.0258169}
+  m_LocalPosition: {x: 1.303555, y: 0, z: -1.0258169}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 2476896076876963725}
@@ -1346,19 +1346,6 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     m_Visible: 1
---- !u!114 &3317157173755285086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5201412033894205680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d20fee0e2299d47e8a560286ecf195d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!135 &6576114075056909785
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1392,10 +1379,10 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5201412033894205680}
-  m_Enabled: 1
-  m_AgentTypeID: 0
+  m_Enabled: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 2.91
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1470,6 +1457,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+--- !u!114 &470932277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5201412033894205680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266f16dfd238d7841baa9305acebb142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 1
+  desiredVelocity: 1
+  path: 1
 --- !u!1 &5494288485566288329
 GameObject:
   m_ObjectHideFlags: 0
