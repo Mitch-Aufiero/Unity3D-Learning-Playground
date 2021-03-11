@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5d079d99f65074e90a5e825cdf20e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 5433420497032039792, guid: 516216f3314438243812a06ab37767e1, type: 3}
+  weaponPrefab: {fileID: 3317816556018446736, guid: 334d3e02f40b5c848a92fc571be58153, type: 3}
   generator: {fileID: 0}
 --- !u!1 &4816989692812783884
 GameObject:
