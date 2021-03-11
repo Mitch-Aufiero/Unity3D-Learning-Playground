@@ -20,6 +20,8 @@ namespace Combat
         public Cinemachine.CinemachineFreeLook playerCamera;
 
 
+        public AmmoWidgetController ammoWidget;
+
         RaycastWeapon[] equippedWeapons = new RaycastWeapon[2];
         int activeWeaponIndex;
         bool isHolstered = false;
@@ -35,6 +37,10 @@ namespace Combat
             }
         }
 
+        public RaycastWeapon GetActiveWeapon()
+        {
+            return GetWeapon(activeWeaponIndex);
+        }
         RaycastWeapon GetWeapon(int index)
         {
             if (index < 0 || index > equippedWeapons.Length)
@@ -70,7 +76,7 @@ namespace Combat
         public void Equip(RaycastWeapon newWeapon)
         {
             int weaponSlotIndex = (int)newWeapon.weaponSlot;
-            Debug.Log(weaponSlotIndex);
+
             var weapon = GetWeapon(weaponSlotIndex);
             if (weapon)
             {
@@ -84,6 +90,8 @@ namespace Combat
 
             equippedWeapons[weaponSlotIndex] = weapon;
             SetActiveWeapon(newWeapon.weaponSlot);
+
+            ammoWidget.RefreshAmmoCount(weapon.ammoCount);
 
         }
 

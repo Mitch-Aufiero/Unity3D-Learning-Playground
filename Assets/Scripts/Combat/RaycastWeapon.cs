@@ -19,6 +19,8 @@ namespace Combat
         public ActiveWeapon.WeaponSlot weaponSlot;
         public bool isFiring = false;
         public int fireRate = 25;
+        public int ammoCount = 6;
+        public int clipSize = 6;
         public float damageAmount;
         public DamageType damageType;
         public float bulletSpeed = 1000;
@@ -32,6 +34,10 @@ namespace Combat
         public Transform raycastOrigin;
         public Transform raycastDestination;
         public WeaponRecoil recoil;
+        public GameObject magazine;
+        public bool reloading = false;
+
+        
 
         public string weaponAnimName;
 
@@ -51,6 +57,11 @@ namespace Combat
 
         private void FireBullet()
         {
+            if(ammoCount<= 0)
+            {
+                return;
+            }
+            ammoCount--;
             muzzleFlash.Emit(1);
 
             Vector3 velocity = (raycastDestination.position - raycastOrigin.position).normalized * bulletSpeed;
@@ -63,16 +74,20 @@ namespace Combat
 
         public void UpdateWeapon(float deltaTime)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (!reloading)
             {
-                StartFiring();
-            }
-            if (isFiring)
-            {
-                UpdateFiring(deltaTime);
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    StartFiring();
+                }
+                if (isFiring)
+                {
+                    UpdateFiring(deltaTime);
+                }
+
             }
             UpdateBullets(deltaTime);
-            if (Input.GetButtonUp("Fire1"))
+            if (Input.GetButtonUp("Fire1") || reloading)
             {
                 StopFiring();
             }
@@ -120,7 +135,6 @@ namespace Combat
         {
             isFiring = true;
             accumulatedTime = 0.0f;
-            FireBullet();
             recoil.Reset();
 
         }

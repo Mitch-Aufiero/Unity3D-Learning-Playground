@@ -35,7 +35,7 @@ namespace Combat {
                 {
                     if(type == damage.damageType)
                     {
-                        Debug.Log("Vulnerable");
+
                         damage.damageAmount *= 2;
                         vulnerableParticle.transform.position = damage.hitPosition.point;
                         vulnerableParticle.transform.forward = damage.hitPosition.normal;
