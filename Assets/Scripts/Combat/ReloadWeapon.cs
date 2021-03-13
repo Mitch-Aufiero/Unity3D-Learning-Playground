@@ -25,7 +25,7 @@ namespace Combat {
             RaycastWeapon weapon = activeWeapon.GetActiveWeapon();
             if (weapon)
             {
-                if (Input.GetKeyDown(KeyCode.R) || weapon.ammoCount <= 0)
+                if ((Input.GetKeyDown(KeyCode.R)  && weapon.ammoCount < weapon.clipSize)|| weapon.ammoCount <= 0)
                 {
                     WeaponReload();
                     weapon.reloading = true;
