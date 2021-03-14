@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465775, g: 0.49641156, b: 0.5748169, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657797, g: 0.4964124, b: 0.57481766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -286,7 +286,7 @@ MonoBehaviour:
   floor: {fileID: 6514382261622336803, guid: 67928b0db8a614c2d99189a693a48d5b, type: 3}
   mazeWidth: 5
   mazeHeight: 5
-  seed: 65
+  seed: 66
   DeadEndSpawns:
   - {fileID: 8126350200475101657, guid: a15de3975464148e6af2ffac6bda213a, type: 3}
   CoridorSpawns:
@@ -513,11 +513,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4543467291436320866, guid: a5e4928b5f6d34127aa2ace06a365043, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000160381
+      value: 0.000000016038095
       objectReference: {fileID: 0}
     - target: {fileID: 4543467291436320866, guid: a5e4928b5f6d34127aa2ace06a365043, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000062320917
+      value: 0.000000006232091
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5e4928b5f6d34127aa2ace06a365043, type: 3}

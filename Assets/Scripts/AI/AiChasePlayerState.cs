@@ -17,6 +17,7 @@ public class AiChasePlayerState : AiState
         {
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
+        agent.navMeshAgent.isStopped = false;
     }
     public void Update(AiAgent agent)
     {
@@ -43,6 +44,12 @@ public class AiChasePlayerState : AiState
                 }
             }
             timer = agent.config.maxTime;
+        }
+
+        if (agent.navMeshAgent.remainingDistance < agent.weapon.WeaponRange)
+        {
+
+            agent.stateMachine.ChangeState(AiStateID.AttackPlayer);
         }
     }
 
