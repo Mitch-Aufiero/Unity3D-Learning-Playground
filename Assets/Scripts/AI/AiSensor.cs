@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 public class AiSensor : MonoBehaviour
 {
     public bool test;
@@ -213,6 +213,7 @@ public class AiSensor : MonoBehaviour
         {
             if(obj.layer == layer)
             {
+                Debug.Log(obj.name);
                 buffer[count++] = obj;
             }
             if(buffer.Length == count)

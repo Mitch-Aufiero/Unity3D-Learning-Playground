@@ -61,6 +61,8 @@ public class MazeGenerator : MonoBehaviour
 
 
         navGenerator.Generate();
+
+        PlayerCharacter.SetActive(true);
     }
 
 
