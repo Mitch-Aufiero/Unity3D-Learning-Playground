@@ -24,7 +24,6 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnableGuid = Guid.NewGuid();
         totalSpawnCount = 0;
         InvokeRepeating(nameof(Spawn), 2.0f, frequency);
     }
@@ -38,6 +37,8 @@ public class Spawner : MonoBehaviour
 
         if(totalSpawnCount< maxSpawns || maxSpawns == -1)
         {
+
+            spawnableGuid = Guid.NewGuid();
             totalSpawnCount++;
             GameObject spawnable = Instantiate(Spawnable, new Vector3(0, 0, 0), Quaternion.identity);
             spawnable.transform.localPosition = transform.position;

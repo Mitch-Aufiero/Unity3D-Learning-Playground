@@ -31,6 +31,7 @@ public class AiStateMachine
     public void Update()
     {
         GetState(currentState)?.Update(agent);
+        
 
     }
 
@@ -40,6 +41,11 @@ public class AiStateMachine
         currentState = newState;
         GetState(currentState)?.Enter(agent);
 
+    }
+
+    public AiStateID getCurrentState()
+    {
+        return currentState;
     }
 
 }
