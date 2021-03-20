@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AiWanderState : AiState
 {
-    public Transform playerTransform;
+    public List<Transform> playerTransforms;
 
     public AiStateID GetId()
     {
@@ -12,9 +12,13 @@ public class AiWanderState : AiState
     }
     public void Enter(AiAgent agent)
     {
-        if (playerTransform == null)
+        if (playerTransforms == null)
         {
-            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            playerTransforms = new List<Transform>();
+            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                playerTransforms.Add(obj.GetComponent<Transform>());
+            }
         }
     }
     public void Update(AiAgent agent)
@@ -37,9 +41,13 @@ public class AiWanderState : AiState
             agent.navMeshAgent.destination = randomPosition;
         }
 
-        if (agent.sensor.IsInSight(playerTransform.gameObject))
-        {
-            agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
+        foreach(Transform playerTransform in playerTransforms)
+        { 
+            if (agent.sensor.IsInSight(playerTransform.gameObject))
+            {
+                Debug.Log("FOUND: " + playerTransform.name);
+                agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
+            }
         }
     }
 
