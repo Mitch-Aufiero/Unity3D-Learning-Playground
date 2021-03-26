@@ -9,12 +9,12 @@ namespace Combat
         public float damageDelay;
         public RaycastHit hitPosition;
 
-        public Damage(DamageType cDamageType, float cDamageAmount, float cDamageDelay, RaycastHit cHitPosition)
+        public Damage(DamageType cDamageType, float cDamageAmount, float cDamageDelay)
         {
             this.damageType = cDamageType;
             this.damageAmount = cDamageAmount;
             this.damageDelay = cDamageDelay;
-            this.hitPosition = cHitPosition;
         }
+
     }
 }

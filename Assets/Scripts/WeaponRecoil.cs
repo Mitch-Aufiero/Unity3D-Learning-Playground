@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class WeaponRecoil : MonoBehaviour
 {
-    [HideInInspector]public Cinemachine.CinemachineFreeLook playerCamera;
-    [HideInInspector]public Cinemachine.CinemachineImpulseSource cameraShake;
-    [HideInInspector] public Animator rigController;
+       public Cinemachine.CinemachineFreeLook playerCamera;
+       public Cinemachine.CinemachineImpulseSource cameraShake;
+       public Animator rigController;
 
     public Vector2[] recoilPattern;
     public float recoilDuration;

@@ -9,6 +9,7 @@ public class CharacterAiming : MonoBehaviour
     Camera myCamera;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,10 @@ public class CharacterAiming : MonoBehaviour
     {
         float yawCamera = myCamera.transform.rotation.eulerAngles.y; // gets rotation of cameras Y axis
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.deltaTime); //blends characters Y  rotation with the cameras Y
+
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.deltaTime); //blends characters Y  rotation with the cameras Y
         
     }
 

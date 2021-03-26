@@ -182,7 +182,7 @@ namespace Combat
                 EnemyHealth enemyHealth;
                 if (enemyHealth = hitInfo.transform.GetComponent<EnemyHealth>())
                 {
-                    enemyHealth.TakeDamage(new Damage( damageType, damageAmount, 0.0f, hitInfo));
+                    enemyHealth.TakeDamage(new Damage( damageType, damageAmount, 0.0f));
 
                 }
 

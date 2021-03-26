@@ -19,6 +19,7 @@ public class CharacterLocomotion : MonoBehaviour
     Vector3 rootMotion;
     Vector3 velocity;
     bool isJumping;
+  
 
     // Start is called before the first frame update
     void Start()
