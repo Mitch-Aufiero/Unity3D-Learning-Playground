@@ -13,7 +13,7 @@ namespace Combat {
         public float damageAmount;
         public float damageDelay;
 
-        float coolDown = 0.0f;
+        public float coolDown = 0.0f;
         bool canAttack = true;
         bool finishedAttack = false;
         float attackRadius = 10.0f;
@@ -48,6 +48,7 @@ namespace Combat {
 
             if (canAttack)
             {
+                canAttack = false;
                 finishedAttack = false;
                 StartCoroutine(Attack());
             }
@@ -65,7 +66,7 @@ namespace Combat {
         IEnumerator Attack()
         {
 
-            animator.SetBool("Attack", true);
+            animator.SetTrigger("Attack");
             
             // wait for animation to finish playing 
             do
@@ -73,7 +74,7 @@ namespace Combat {
                 yield return new WaitForEndOfFrame();
             } while (animator.GetCurrentAnimatorStateInfo(1).normalizedTime < 1.0f);
 
-            Collider[] hits = Physics.OverlapSphere(this.transform.position, attackRadius);
+            Collider[] hits = Physics.OverlapSphere(this.transform.position, attackRadius); // move to animation event!!
            
             foreach (Collider hit in hits)
             {
@@ -85,7 +86,7 @@ namespace Combat {
                 }
             }
             
-            animator.SetBool("Attack", false);
+           
             finishedAttack = true;
             canAttack = false;
             StartCoroutine(AttackCooldown());

@@ -84,7 +84,7 @@ namespace Combat {
         private void LateUpdate()// look into less taxing way of updating canvas. InvokeRepeating?
         {
 
-                healthBarUI.transform.LookAt(transform.position + cameraMain.transform.rotation * Vector3.back, cameraMain.transform.rotation * Vector3.up);
+                healthBarUI.transform.LookAt(cameraMain.transform.position + cameraMain.transform.rotation * Vector3.back, cameraMain.transform.rotation * Vector3.up);
 
         }
     }
