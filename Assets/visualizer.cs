@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class visualizer : MonoBehaviour
 {
+    public SkinnedMeshRenderer Chest;
+    public SkinnedMeshRenderer Legs;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    
+
+    public void ChangeAppearance()
     {
         
     }

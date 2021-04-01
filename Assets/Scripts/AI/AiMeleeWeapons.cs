@@ -5,14 +5,18 @@ using Combat;
 
 public class AiMeleeWeapons : MonoBehaviour, AiWeapons
 {
-
+    public float damageAmount;
+    public DamageType damageType;
+    public float damageDelay;
     public LayerMask layers;
-    public AiMeleeWeaponConfig config;
+    public float attackStoppingDistance;
+    public float attackRadius;
+    public float attackCoolDown;
+    public ParticleSystem attackParticle;
+
 
     Animator animator;
     bool canAttack = true;
-    float attackRadius = 0.0f;
-    Damage attackDamage;
     float attackRange;
 
 
@@ -25,10 +29,9 @@ public class AiMeleeWeapons : MonoBehaviour, AiWeapons
     {
         animator = GetComponent<Animator>();
         WeaponRange = attackRange;
-        attackRadius = config.attackRadius;
-        attackDamage = config.attackDamage;
-        WeaponRange = config.attackStoppingDistance;
-        CoolDown = config.attackCoolDown;
+       
+        WeaponRange = attackStoppingDistance;
+        CoolDown = attackCoolDown;
         FinishedAttack = false;
 
     }
@@ -55,21 +58,29 @@ public class AiMeleeWeapons : MonoBehaviour, AiWeapons
     IEnumerator Attack()
     {
 
-        Collider[] hits = Physics.OverlapSphere(this.transform.position, attackRadius, layers);
-        config.attackParticle.Emit(1);
-        foreach (Collider hit in hits)
-        {
-            Debug.Log("hit: " + hit.name);
-        }
 
-        animator.SetBool("Attack", true);
+        //animator.SetBool("Attack", true);
+        animator.SetTrigger("Attack");
         // wait for animation to finish playing 
+        Debug.Log("Starting Animation");
         do
         {
             yield return new WaitForEndOfFrame();
         } while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
+        Debug.Log("Finish Animation");
 
-        animator.SetBool("Attack", false);
+        Collider[] hits = Physics.OverlapSphere(this.transform.position, attackRadius, layers);
+        //config.attackParticle.Emit(1);
+        foreach (Collider hit in hits)
+        {
+            PlayerHealth playerHealth;
+            if (playerHealth = hit.transform.GetComponent<PlayerHealth>())
+            {
+                playerHealth.TakeDamage(new Damage(damageType, damageAmount, damageDelay));
+
+            }
+        }
+        //animator.SetBool("Attack", false);
         FinishedAttack = true;
         StartCoroutine(AttackCooldown());
     }

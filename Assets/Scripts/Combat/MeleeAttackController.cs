@@ -12,12 +12,11 @@ namespace Combat {
         public DamageType damageType;
         public float damageAmount;
         public float damageDelay;
+        public float attackRadius = 10.0f;
 
         public float coolDown = 0.0f;
         bool canAttack = true;
         bool finishedAttack = false;
-        float attackRadius = 10.0f;
-        Damage attackDamage;
         float attackRange;
 
         
@@ -26,7 +25,6 @@ namespace Combat {
             animator = GetComponent<Animator>();
             
             finishedAttack = false;
-            attackDamage = new Damage(damageType, damageAmount, damageDelay);
 
         }
 
@@ -36,7 +34,6 @@ namespace Combat {
             if (Input.GetKeyDown(KeyCode.Mouse0)){
                StartAttack();
             }
-            Debug.Log(animator.GetBool("Attack"));
         }
 
 
@@ -81,7 +78,7 @@ namespace Combat {
                 EnemyHealth enemyHealth;
                 if (enemyHealth = hit.transform.GetComponent<EnemyHealth>())
                 {
-                    enemyHealth.TakeDamage(attackDamage);
+                    enemyHealth.TakeDamage(new Damage(damageType, damageAmount, damageDelay));
 
                 }
             }
