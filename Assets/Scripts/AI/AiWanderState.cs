@@ -45,7 +45,7 @@ public class AiWanderState : AiState
         { 
             if (agent.sensor.IsInSight(playerTransform.gameObject))
             {
-                Debug.Log("FOUND: " + playerTransform.name);
+                
                 agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
             }
         }

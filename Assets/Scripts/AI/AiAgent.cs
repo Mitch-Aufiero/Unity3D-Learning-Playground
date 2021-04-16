@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Combat;
 
 public class AiAgent : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class AiAgent : MonoBehaviour
     //public UIHealthBar ui;
     public AiSensor sensor;
     public GameObject playerTransform;
-    public AiWeapons weapon;
+
+    public MeleeWeapon weapon;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,7 @@ public class AiAgent : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.enabled = true;
         sensor = GetComponent<AiSensor>();
-        weapon = GetComponent<AiWeapons>();
+        weapon = GetComponentInChildren<MeleeWeapon>();
         stateMachine = new AiStateMachine(this);
         stateMachine.RegisterState(new AiChasePlayerState());
         stateMachine.RegisterState(new AiWanderState());

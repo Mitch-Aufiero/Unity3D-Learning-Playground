@@ -53,6 +53,7 @@ public class AiSensor : MonoBehaviour
     private void Scan()
     {
         count = Physics.OverlapSphereNonAlloc(transform.position, distance, colliders, layers, QueryTriggerInteraction.Collide);
+
         objects.Clear();
         for(int i = 0; i< count; ++i)
         {

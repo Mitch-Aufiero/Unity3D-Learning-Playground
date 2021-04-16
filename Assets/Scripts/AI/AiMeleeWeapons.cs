@@ -13,9 +13,11 @@ public class AiMeleeWeapons : MonoBehaviour, AiWeapons
     public float attackRadius;
     public float attackCoolDown;
     public ParticleSystem attackParticle;
+    public Collider collider;
 
 
     Animator animator;
+
     bool canAttack = true;
     float attackRange;
 
@@ -33,6 +35,10 @@ public class AiMeleeWeapons : MonoBehaviour, AiWeapons
         WeaponRange = attackStoppingDistance;
         CoolDown = attackCoolDown;
         FinishedAttack = false;
+
+       
+        collider.isTrigger = true;
+        collider.enabled = false;
 
     }
 
@@ -62,12 +68,13 @@ public class AiMeleeWeapons : MonoBehaviour, AiWeapons
         //animator.SetBool("Attack", true);
         animator.SetTrigger("Attack");
         // wait for animation to finish playing 
-        Debug.Log("Starting Animation");
+        collider.enabled = true;
+
         do
         {
             yield return new WaitForEndOfFrame();
         } while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
-        Debug.Log("Finish Animation");
+
 
         Collider[] hits = Physics.OverlapSphere(this.transform.position, attackRadius, layers);
         //config.attackParticle.Emit(1);
@@ -82,6 +89,7 @@ public class AiMeleeWeapons : MonoBehaviour, AiWeapons
         }
         //animator.SetBool("Attack", false);
         FinishedAttack = true;
+        collider.enabled = false;
         StartCoroutine(AttackCooldown());
     }
 

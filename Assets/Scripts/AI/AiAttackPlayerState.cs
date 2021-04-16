@@ -17,7 +17,7 @@ public class AiAttackPlayerState : AiState
     }
     public void Enter(AiAgent agent)
     {
-        Debug.Log("attacking");
+        
         if (playerTransform == null)
         {
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -47,7 +47,7 @@ public class AiAttackPlayerState : AiState
     private void UpdateAttacking(AiAgent agent)
     {
 
-        agent.weapon.StartAttack();
+        agent.weapon.PerformAttack(agent.weapon.damage);
 
 
     }
