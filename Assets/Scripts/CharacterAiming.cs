@@ -18,20 +18,12 @@ public class CharacterAiming : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+
+    public void AimCharacter(float delta)
     {
         float yawCamera = myCamera.transform.rotation.eulerAngles.y; // gets rotation of cameras Y axis
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * delta); //blends characters Y  rotation with the cameras Y
 
-
-
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.deltaTime); //blends characters Y  rotation with the cameras Y
-        
     }
 
-    private void LateUpdate()
-    {
-        
-    }
 }

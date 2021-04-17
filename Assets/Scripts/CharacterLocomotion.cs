@@ -28,21 +28,18 @@ public class CharacterLocomotion : MonoBehaviour
         cc = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
-    void Update()
+  
+
+
+    public void SetMovementAxes(float horizontal, float vertical)
     {
-        input.x = Input.GetAxis("Horizontal");
-        input.y = Input.GetAxis("Vertical");
+        input.x = horizontal;
+        input.y = vertical;
 
         animator.SetFloat("InputX", input.x);
         animator.SetFloat("InputY", input.y);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
-
     }
+
 
     private void OnAnimatorMove()
     {
@@ -92,7 +89,7 @@ public class CharacterLocomotion : MonoBehaviour
         return ((transform.forward * input.y) + (transform.right * input.x)) * (airControl / 100);
     }
 
-    void Jump()
+    public void Jump()
     {
         if (!isJumping)
         {

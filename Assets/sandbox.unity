@@ -8005,7 +8005,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 8943356360595317514}
+        transform: {fileID: 8943356359194985926}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -18135,7 +18135,7 @@ Transform:
   m_Children:
   - {fileID: 1917744404}
   m_Father: {fileID: 1536883546}
-  m_RootOrder: 31
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &842123099
 LODGroup:
@@ -24040,7 +24040,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1536883546}
-  m_RootOrder: 30
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1144512402
 PrefabInstance:
@@ -32978,6 +32978,8 @@ Transform:
   - {fileID: 567734435}
   - {fileID: 1241812306}
   - {fileID: 149009679}
+  - {fileID: 1142474509}
+  - {fileID: 842123098}
   - {fileID: 383298497}
   - {fileID: 1482796052}
   - {fileID: 1417969044}
@@ -32993,8 +32995,6 @@ Transform:
   - {fileID: 656772992}
   - {fileID: 1303372573}
   - {fileID: 329205316}
-  - {fileID: 1142474509}
-  - {fileID: 842123098}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38586,7 +38586,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 8943356360595317514}
+        transform: {fileID: 8943356359194985926}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -44717,7 +44717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c955cc1776628b346b904b0f1a1ffee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loc: {fileID: 919132147595830768}
+  LocomotionController: {fileID: 919132147595830768}
+  AimController: {fileID: 919132147595830767}
   weapon: {fileID: 919132147595830766}
 --- !u!1 &919132147701912522
 GameObject:

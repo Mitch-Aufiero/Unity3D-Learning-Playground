@@ -6,7 +6,8 @@ using Combat;
 public class PlayerInputManager : MonoBehaviour
 {
 
-    public CharacterLocomotion loc;// not yet implemented
+    public CharacterLocomotion LocomotionController;// not yet implemented
+    public CharacterAiming AimController;
 
     public WeaponController weapon;
 
@@ -19,9 +20,19 @@ public class PlayerInputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LocomotionController.SetMovementAxes(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) 
+            AimController.AimCharacter(Time.deltaTime);
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             weapon.Attack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            LocomotionController.Jump();
         }
     }
 }
