@@ -7,6 +7,7 @@ public class AiLocomotion : MonoBehaviour
 {
 
     public Transform target;
+    public string MovementType;
     NavMeshAgent agent;
     Animator animator;
 
@@ -16,7 +17,7 @@ public class AiLocomotion : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
-
+        ChangeMovementType(MovementType);
 
         agent.enabled = true;
     }
@@ -30,5 +31,10 @@ public class AiLocomotion : MonoBehaviour
         {
             animator.SetFloat("Speed", 0);
         }
+    }
+
+    public void ChangeMovementType(string movementType)
+    {
+        animator.SetBool(movementType, true);
     }
 }

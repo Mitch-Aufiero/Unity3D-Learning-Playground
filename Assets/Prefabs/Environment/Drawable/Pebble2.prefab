@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2742935817729417730}
-  - component: {fileID: 7041326818583370996}
+  - component: {fileID: 2842191216550048729}
   m_Layer: 0
   m_Name: Pebble2
   m_TagString: Untagged
@@ -113,7 +113,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &7041326818583370996
+--- !u!205 &2842191216550048729
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,19 +121,14 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2742935817729417731}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
-  m_Size: 1
+  m_LocalReferencePoint: {x: 0, y: 0.023144774, z: 0}
+  m_Size: 0.44674623
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.039691772
+  - screenRelativeHeight: 0.04544768
     fadeTransitionWidth: 0
-    renderers: []
-  - screenRelativeHeight: 0.0003616371
-    fadeTransitionWidth: 0
-    renderers: []
-  - screenRelativeHeight: 0.0003616371
-    fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 2742935816571125102}
   m_Enabled: 1

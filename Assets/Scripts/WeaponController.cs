@@ -19,14 +19,12 @@ namespace Combat
 
         }
 
-        // Update is called once per frame
-        void Update()
+        public void  Attack()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                MainWeapon.PerformAttack(CalculateDamage());
-            }
+            MainWeapon.PerformAttack(CalculateDamage());
         }
+
+        
 
         private Damage CalculateDamage()
         {
@@ -36,5 +34,18 @@ namespace Combat
             
             return dmg;
         }
+
+
+        public void ActivateWeaponCollider()
+        {
+            MainWeapon.collider.enabled = true;
+        }
+
+        public void DisableWeaponCollider()
+        {
+            MainWeapon.collider.enabled = false;
+        }
+
+
     }
 }

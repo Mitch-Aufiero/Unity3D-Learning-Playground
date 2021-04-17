@@ -10,18 +10,20 @@ namespace Combat
         public Animator animator;
         public bool aiWeapon = false;
 
+
         // this data should come from item system
+        public string WeaponType = "Sword";
         public List<BaseStat> Stats { get; set; }
 
         public Damage damage { get; set; }
         public float AttackCoolDown { get ; set ; }
 
         // --------------------
+        public Collider collider;
         public float WeaponRange;
         public bool FinishedAttack = false;
 
 
-        Collider collider;
         bool canAttack = true;
 
 
@@ -30,6 +32,7 @@ namespace Combat
 
             
             collider = GetComponent<Collider>();
+            collider.gameObject.SetActive(true);
             collider.isTrigger = true;
             collider.enabled = false;
 
@@ -57,7 +60,7 @@ namespace Combat
 
         public void PerformSpecialAttack()
         {
-            animator.SetTrigger("Special_Attack");
+            animator.SetTrigger("Special_Attack_" + WeaponType);
         }
 
         void OnTriggerEnter(Collider col)
@@ -91,8 +94,7 @@ namespace Combat
         IEnumerator Attack()
         {
 
-            animator.SetTrigger("Attack");
-            collider.enabled = true;
+            animator.SetTrigger("Attack_" + WeaponType);
             // wait for animation to finish playing 
             do
             {
@@ -103,8 +105,8 @@ namespace Combat
 
 
             FinishedAttack = true;
-            collider.enabled = false;
             canAttack = false;
+           
             StartCoroutine(AttackCooldown());
 
         }

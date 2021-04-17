@@ -8,7 +8,7 @@ public class AiAttackPlayerState : AiState
 {
     public Transform playerTransform;
     float attackRange = 0.0f;
-
+    float rotationSpeed =100f;
 
 
     public AiStateID GetId()
@@ -46,7 +46,7 @@ public class AiAttackPlayerState : AiState
 
     private void UpdateAttacking(AiAgent agent)
     {
-
+        //RotateTowards(agent, playerTransform);
         agent.weapon.PerformAttack(agent.weapon.damage);
 
 
@@ -57,5 +57,12 @@ public class AiAttackPlayerState : AiState
 
     public void Exit(AiAgent agent)
     {
+    }
+
+    private void RotateTowards(AiAgent agent,Transform target)
+    {
+        Vector3 direction = (target.position - agent.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 }
