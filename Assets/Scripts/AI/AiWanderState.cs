@@ -17,6 +17,7 @@ public class AiWanderState : AiState
             playerTransforms = new List<Transform>();
             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
             {
+
                 playerTransforms.Add(obj.GetComponent<Transform>());
             }
         }
@@ -43,8 +44,9 @@ public class AiWanderState : AiState
 
         foreach(Transform playerTransform in playerTransforms)
         { 
-            if (agent.sensor.IsInSight(playerTransform.gameObject))
+            if (agent.sensor.IsAwareOf(playerTransform.gameObject))
             {
+
                 
                 agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
             }

@@ -56,29 +56,35 @@ public class CharacterLocomotion : MonoBehaviour
         {
             UpdateInAir();
         }
-        else if (isRolling)
-        {
-            UpdateMidRoll();
-        }
+       
         else
         { //IsGrounded State
             UpdateOnGround();
         }
     }
 
-    private void UpdateMidRoll()
+
+    public void Roll()
     {
+        if (!cc.isGrounded)
+            return;
+
+        isRolling = true;
         Vector3 stepForwardAmout = rootMotion * rollSpeed;
         Vector3 stepDownAmount = Vector3.down * stepDownRate;
 
         cc.Move(stepForwardAmout + stepDownAmount);
 
         rootMotion = Vector3.zero;
-        animator.SetFloat("InputY", 1);
+        //animator.SetFloat("InputY", 1);
         animator.SetTrigger("Roll");
-        isRolling = false;
+    }
 
+
+    public void FinishRoll()
+    {
         
+        isRolling = false;
     }
 
     private void UpdateOnGround()
@@ -113,7 +119,7 @@ public class CharacterLocomotion : MonoBehaviour
 
     public void Jump()
     {
-        if (!isJumping)
+        if (!isJumping && !isRolling)
         {
             float jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);
             SetInAir(jumpVelocity);
@@ -127,15 +133,6 @@ public class CharacterLocomotion : MonoBehaviour
         velocity = animator.velocity * jumpDamping *groundSpeed;
         velocity.y = jumpVelocity;
         animator.SetBool("isJumping", true);
-    }
-
-    public void Roll()
-    {
-        isRolling = true;
-        if (!cc.isGrounded)
-            return;
-        
-
     }
 
 

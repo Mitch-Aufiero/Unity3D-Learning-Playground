@@ -23,10 +23,7 @@ public class AiSensor : MonoBehaviour
     }
     private List<GameObject> objects = new List<GameObject>();
 
-    internal bool IsInSight(object gameObject)
-    {
-        throw new NotImplementedException();
-    }
+  
 
     Collider[] colliders = new Collider[50];
     Mesh mesh;
@@ -44,6 +41,7 @@ public class AiSensor : MonoBehaviour
         scanTimer -= Time.deltaTime;    
         if(scanTimer < 0)
         {
+
             scanTimer += scanInterval;
             Scan();
 
@@ -66,11 +64,23 @@ public class AiSensor : MonoBehaviour
         }
     }
 
+    public bool IsAwareOf(GameObject obj)
+    {
+        if (objects.Contains(obj))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public bool IsInSight(GameObject obj)
     {
         Vector3 origin = transform.position;
         Vector3 dest = obj.transform.position;
         Vector3 direction = dest - origin;
+
+        
+
         if (direction.y < 0 || direction.y > height)// if object is above sight cone or below 0
         {
             return false;
