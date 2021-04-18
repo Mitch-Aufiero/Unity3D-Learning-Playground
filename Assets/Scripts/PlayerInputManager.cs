@@ -30,6 +30,11 @@ public class PlayerInputManager : MonoBehaviour
             weapon.Attack();
         }
 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            LocomotionController.Roll();
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             LocomotionController.Jump();

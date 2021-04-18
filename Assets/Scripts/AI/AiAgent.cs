@@ -12,7 +12,7 @@ public class AiAgent : MonoBehaviour
     public AiAgentConfig config;
     // public Ragdoll ragdoll;
     public SkinnedMeshRenderer mesh;
-    //public UIHealthBar ui;
+    public EnemyHealth health;
     public AiSensor sensor;
     public GameObject playerTransform;
 
@@ -21,13 +21,15 @@ public class AiAgent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ragdoll = GetComponent<RagDoll>();
         mesh = GetComponentInChildren<SkinnedMeshRenderer>();
-        //ui = GetComponentInChildren<UIHealthBar>();
+        health = GetComponentInChildren<EnemyHealth>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.enabled = true;
         sensor = GetComponent<AiSensor>();
         weapon = GetComponentInChildren<MeleeWeapon>();
+        weapon.AttackCoolDown = config.attackCoolDown;
+        weapon.damage.damageAmount = config.attackDamage;
+
         stateMachine = new AiStateMachine(this);
         stateMachine.RegisterState(new AiChasePlayerState());
         stateMachine.RegisterState(new AiWanderState());

@@ -4303,10 +4303,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5866666020249986349}
-  aiWeapon: 0
+  damageLayer:
+    serializedVersion: 2
+    m_Bits: 512
   WeaponType: Sword
   collider: {fileID: 0}
-  WeaponRange: 0
   FinishedAttack: 0
 --- !u!65 &145600744
 BoxCollider:
@@ -11650,6 +11651,7 @@ MonoBehaviour:
   airControl: 1
   jumpDamping: 1
   groundSpeed: 1
+  rollSpeed: 0
   pushPower: 1
 --- !u!143 &521486665
 CharacterController:
@@ -30425,6 +30427,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 769723562626139868, guid: b88e34d33eace2747acc9119f4dc9ab3, type: 3}
+      propertyPath: maxHealth
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 769723562760005419, guid: b88e34d33eace2747acc9119f4dc9ab3, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -31072,6 +31078,10 @@ PrefabInstance:
     - target: {fileID: 769723564655690208, guid: b88e34d33eace2747acc9119f4dc9ab3, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628186718732720943, guid: b88e34d33eace2747acc9119f4dc9ab3, type: 3}
+      propertyPath: damageLayer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b88e34d33eace2747acc9119f4dc9ab3, type: 3}
@@ -37123,6 +37133,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemySpear
       objectReference: {fileID: 0}
+    - target: {fileID: 769723562626139868, guid: 99ed16ea890817a4da1fe239502120ea, type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 769723562890736210, guid: 99ed16ea890817a4da1fe239502120ea, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.11025688
@@ -37650,6 +37664,10 @@ PrefabInstance:
     - target: {fileID: 769723564489875920, guid: 99ed16ea890817a4da1fe239502120ea, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.08762275
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269107185300970884, guid: 99ed16ea890817a4da1fe239502120ea, type: 3}
+      propertyPath: damageLayer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99ed16ea890817a4da1fe239502120ea, type: 3}
@@ -44610,6 +44628,7 @@ MonoBehaviour:
   airControl: 1
   jumpDamping: 1
   groundSpeed: 1.6
+  rollSpeed: 0
   pushPower: 1
 --- !u!143 &919132147595830769
 CharacterController:
@@ -46338,7 +46357,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'spine'\n\tTransform 'hand.R'\n\tTransform 'spine.002'\n\tTransform
+    'spine.004'\n\tTransform 'spine.003'\n\tTransform 'spine.005'\n\tTransform 'spine'\n\tTransform
+    'hand.R'\n\tTransform 'spine.002'\n\tTransform 'spine.004'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0

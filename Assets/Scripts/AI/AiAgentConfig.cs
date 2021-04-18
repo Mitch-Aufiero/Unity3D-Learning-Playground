@@ -8,12 +8,9 @@ using Combat;
 public class AiAgentConfig : ScriptableObject
 {
 
-    public float maxTime = 1.0f;
-    public float maxDistance = 1.0f;
-    public float dieForce = 10.0f;
+    public float chaseResetTimer = 1.0f;
     public float attackStoppingDistance;
-    public float attackSpeed;
-    public float attackRange;
     public float attackCoolDown;
-    public Damage attackDamage;
+    public float attackDamage;
+
 }

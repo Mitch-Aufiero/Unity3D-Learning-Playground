@@ -44,10 +44,10 @@ public class AiChasePlayerState : AiState
                     agent.navMeshAgent.destination = playerTransform.position;
                 }
             }
-            timer = agent.config.maxTime;
+            timer = agent.config.chaseResetTimer;
         }
 
-        if (agent.navMeshAgent.remainingDistance < agent.weapon.WeaponRange)
+        if (agent.navMeshAgent.remainingDistance < agent.config.attackStoppingDistance)
         {
 
             agent.stateMachine.ChangeState(AiStateID.AttackPlayer);

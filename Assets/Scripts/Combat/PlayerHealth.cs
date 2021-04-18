@@ -19,6 +19,7 @@ namespace Combat
         public ParticleSystem vulnerableParticle;
         Camera cameraMain;
 
+        bool invulnerable;
 
 
         // Start is called before the first frame update
@@ -26,13 +27,16 @@ namespace Combat
         {
             health = maxHealth;
             cameraMain = Camera.main;
+            invulnerable = false;
         }
 
 
         public void TakeDamage(Damage damage ) // do math related to how much damage player should take
         {
-            health -= damage.damageAmount;
-            CalculateHealth();
+            if (!invulnerable) { 
+                health -= damage.damageAmount;
+                CalculateHealth();
+            }
         }
 
         void CalculateHealth()
@@ -55,6 +59,17 @@ namespace Combat
 
             healthSlider.value = health / maxHealth;
         }
+
+
+        public void SetInvulnerable()
+        {
+            invulnerable = true;
+        }
+        public void SetVulnerable()
+        {
+            invulnerable = false;
+        }
+
 
         void Die() 
         {

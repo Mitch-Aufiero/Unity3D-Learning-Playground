@@ -17,7 +17,8 @@ public class AiLocomotion : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
-        ChangeMovementType(MovementType);
+        if(MovementType != "")
+            ChangeMovementType(MovementType);
 
         agent.enabled = true;
     }

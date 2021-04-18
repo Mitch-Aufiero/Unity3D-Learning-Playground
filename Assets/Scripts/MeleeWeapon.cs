@@ -8,7 +8,8 @@ namespace Combat
     public class MeleeWeapon : MonoBehaviour
     {
         public Animator animator;
-        public bool aiWeapon = false;
+        public LayerMask damageLayer;
+        
 
 
         // this data should come from item system
@@ -20,7 +21,7 @@ namespace Combat
 
         // --------------------
         public Collider collider;
-        public float WeaponRange;
+       
         public bool FinishedAttack = false;
 
 
@@ -65,20 +66,21 @@ namespace Combat
 
         void OnTriggerEnter(Collider col)
         {
-            if(!aiWeapon)
+
+            if (damageLayer == (damageLayer | ( 1 << col.gameObject.layer )))
             { 
                 EnemyHealth enemyHealth;
                 if (enemyHealth = col.transform.GetComponent<EnemyHealth>())
                 {
                     enemyHealth.TakeDamage(damage);
                 }
-            }
-            else
-            {
-                PlayerHealth playerHealth;
-                if (playerHealth = col.transform.GetComponent<PlayerHealth>())
+                else
                 {
-                    playerHealth.TakeDamage(damage);
+                    PlayerHealth playerHealth;
+                    if (playerHealth = col.transform.GetComponent<PlayerHealth>())
+                    {
+                        playerHealth.TakeDamage(damage);
+                    }
                 }
             }
         }

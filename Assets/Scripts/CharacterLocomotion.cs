@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class CharacterLocomotion : MonoBehaviour
     public float airControl;
     public float jumpDamping;
     public float groundSpeed;
+    public float rollSpeed;
     public float pushPower;
 
     Animator animator;
@@ -19,6 +21,7 @@ public class CharacterLocomotion : MonoBehaviour
     Vector3 rootMotion;
     Vector3 velocity;
     bool isJumping;
+    bool isRolling;
   
 
     // Start is called before the first frame update
@@ -53,10 +56,29 @@ public class CharacterLocomotion : MonoBehaviour
         {
             UpdateInAir();
         }
+        else if (isRolling)
+        {
+            UpdateMidRoll();
+        }
         else
         { //IsGrounded State
             UpdateOnGround();
         }
+    }
+
+    private void UpdateMidRoll()
+    {
+        Vector3 stepForwardAmout = rootMotion * rollSpeed;
+        Vector3 stepDownAmount = Vector3.down * stepDownRate;
+
+        cc.Move(stepForwardAmout + stepDownAmount);
+
+        rootMotion = Vector3.zero;
+        animator.SetFloat("InputY", 1);
+        animator.SetTrigger("Roll");
+        isRolling = false;
+
+        
     }
 
     private void UpdateOnGround()
@@ -106,6 +128,17 @@ public class CharacterLocomotion : MonoBehaviour
         velocity.y = jumpVelocity;
         animator.SetBool("isJumping", true);
     }
+
+    public void Roll()
+    {
+        isRolling = true;
+        if (!cc.isGrounded)
+            return;
+        
+
+    }
+
+
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {

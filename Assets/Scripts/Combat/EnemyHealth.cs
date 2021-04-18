@@ -14,13 +14,23 @@ namespace Combat {
         public Slider healthSlider;
         public DamageType[] VulnerableDamageTypes;
         public ParticleSystem vulnerableParticle;
+        public AiAgent agent;
+
         Camera cameraMain;
 
-  
+        Animator animator;
+        Collider collider;
+
+
 
         // Start is called before the first frame update
         void Start()
         {
+            agent = GetComponent<AiAgent>();
+            collider = GetComponent<Collider>();
+
+            animator = GetComponent<Animator>();
+
             health = maxHealth;
             cameraMain = Camera.main;
         }
@@ -36,7 +46,7 @@ namespace Combat {
                     if(type == damage.damageType)
                     {
 
-                        damage.damageAmount *= 2;
+                        damage.damageAmount *= 1.5f;
                         vulnerableParticle.transform.position = damage.hitPosition.point;
                         vulnerableParticle.transform.forward = damage.hitPosition.normal;
                         vulnerableParticle.Emit(1);
@@ -44,10 +54,6 @@ namespace Combat {
                     }
                 }
             }
-
-
-        
-        
 
             health -= damage.damageAmount;
             CalculateHealth();
@@ -61,25 +67,33 @@ namespace Combat {
                 health = maxHealth;
             }
 
-            if(health < 0)
+            if(health <= 0)
             {
-                KillEnemy();
+                healthBarUI.SetActive(false);
+                animator.SetTrigger("Death");
+                agent.stateMachine.ChangeState(AiStateID.Death);
+                collider.enabled = false;
+                StartCoroutine(Die());
             }
-
-            if(health < maxHealth)
+            else if (health < maxHealth)
             {
                 healthBarUI.SetActive(true);
             }
 
+
             healthSlider.value = health / maxHealth;
         }
 
-        void KillEnemy()// play death animation, drop items, give exp etc.
+   
+
+
+        IEnumerator Die()
         {
 
+            yield return new WaitForSeconds(6);
             Destroy(gameObject);
+           
         }
-
 
         private void LateUpdate()// look into less taxing way of updating canvas. InvokeRepeating?
         {

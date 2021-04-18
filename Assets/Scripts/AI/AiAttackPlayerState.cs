@@ -25,7 +25,7 @@ public class AiAttackPlayerState : AiState
 
         agent.navMeshAgent.isStopped = true;
 
-        attackRange = agent.weapon.WeaponRange;
+        attackRange = agent.config.attackStoppingDistance;
      
 
     }
@@ -35,7 +35,7 @@ public class AiAttackPlayerState : AiState
        
 
 
-        if (agent.navMeshAgent.remainingDistance > attackRange || agent.weapon.FinishedAttack == true) // maybe use stopping distance instead?
+        if (agent.navMeshAgent.remainingDistance > attackRange || agent.weapon.FinishedAttack == true) 
         {
             agent.navMeshAgent.destination = playerTransform.position;
             agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
