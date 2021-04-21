@@ -55,6 +55,7 @@ namespace Combat {
                 }
             }
 
+            animator.SetTrigger("Damaged");
             health -= damage.damageAmount;
             CalculateHealth();
         }

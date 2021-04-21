@@ -19,12 +19,16 @@ namespace Combat
         public ParticleSystem vulnerableParticle;
         Camera cameraMain;
 
+        Animator animator;
+
         bool invulnerable;
 
 
         // Start is called before the first frame update
         void Start()
         {
+            animator = GetComponent<Animator>();
+
             health = maxHealth;
             cameraMain = Camera.main;
             invulnerable = false;
@@ -33,7 +37,8 @@ namespace Combat
 
         public void TakeDamage(Damage damage ) // do math related to how much damage player should take
         {
-            if (!invulnerable) { 
+            if (!invulnerable) {
+                animator.SetTrigger("Damaged");
                 health -= damage.damageAmount;
                 CalculateHealth();
             }

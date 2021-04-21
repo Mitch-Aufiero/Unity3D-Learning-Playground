@@ -10,6 +10,8 @@ public class AiAttackPlayerState : AiState
     float attackRange = 0.0f;
     float rotationSpeed =100f;
 
+    private AIAttackAction currentAttack;
+
 
     public AiStateID GetId()
     {
@@ -27,6 +29,64 @@ public class AiAttackPlayerState : AiState
 
         attackRange = agent.config.attackStoppingDistance;
      
+
+    }
+
+    private void GetNewAttack(AiAgent agent)
+    {
+        Vector3 targetsDirection = playerTransform.position - agent.transform.position;
+        float viewableAngle = Vector3.Angle(targetsDirection, agent.transform.forward);
+
+
+        int maxScore = 0;
+
+        for (int i = 0; i < agent.config.AiAttacks.Length; i++)
+        {
+            AIAttackAction aiAttack = agent.config.AiAttacks[i];
+            if(agent.navMeshAgent.remainingDistance <= aiAttack.maximumDistanceNeededToAttack
+                && agent.navMeshAgent.remainingDistance >= aiAttack.minimumDistanceNeededToAttack)
+            {
+                if(viewableAngle <= aiAttack.maximumAttackAngle 
+                    && viewableAngle <= aiAttack.maximumAttackAngle)
+                {
+                    maxScore += aiAttack.attackScore;
+                }
+            }
+        }
+
+
+        int randomValue = UnityEngine.Random.Range(0, maxScore);
+        int tempScore = 0;
+
+        for (int i = 0; i < agent.config.AiAttacks.Length; i++)
+        {
+            AIAttackAction aiAttack = agent.config.AiAttacks[i];
+            if (agent.navMeshAgent.remainingDistance <= aiAttack.maximumDistanceNeededToAttack
+                && agent.navMeshAgent.remainingDistance >= aiAttack.minimumDistanceNeededToAttack)
+            {
+                if (viewableAngle <= aiAttack.maximumAttackAngle
+                    && viewableAngle <= aiAttack.maximumAttackAngle)
+                {
+                    if (currentAttack != null)
+                        return;
+                    tempScore += aiAttack.attackScore;
+
+                    if(tempScore > randomValue)
+                    {
+                        currentAttack = aiAttack;
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void AttackTarget(AiAgent agent)
+    {
+        if(currentAttack == null)
+        {
+            GetNewAttack(agent);
+        }
 
     }
 

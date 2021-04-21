@@ -130,7 +130,7 @@ public class CharacterLocomotion : MonoBehaviour
     private void SetInAir(float jumpVelocity)
     {
         isJumping = true;
-        velocity = animator.velocity * jumpDamping *groundSpeed;
+        velocity = animator.velocity * jumpDamping * groundSpeed;
         velocity.y = jumpVelocity;
         animator.SetBool("isJumping", true);
     }

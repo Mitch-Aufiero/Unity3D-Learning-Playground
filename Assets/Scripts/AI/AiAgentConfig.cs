@@ -13,4 +13,6 @@ public class AiAgentConfig : ScriptableObject
     public float attackCoolDown;
     public float attackDamage;
 
+    public AIAttackAction[] AiAttacks;
+
 }

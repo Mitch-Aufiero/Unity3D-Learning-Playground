@@ -18,6 +18,7 @@ public class AiChasePlayerState : AiState
         {
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
+
         agent.navMeshAgent.isStopped = false;
     }
     public void Update(AiAgent agent)
