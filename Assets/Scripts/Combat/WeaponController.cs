@@ -11,16 +11,18 @@ namespace Combat
         public GameObject PlayerRightHand;
         public MeleeWeapon MainWeapon;
 
-
+        public Animator animator;
+        
 
         // Start is called before the first frame update
         void Start()
         {
-
+            animator = GetComponent<Animator>();
         }
 
         public void  Attack()
         {
+            
             MainWeapon.PerformAttack(CalculateDamage());
         }
 
@@ -44,6 +46,15 @@ namespace Combat
         public void DisableWeaponCollider()
         {
             MainWeapon.collider.enabled = false;
+        }
+
+        public void EnableCombo()
+        {
+            animator.SetBool("canDoCombo", true);
+        }
+        public void DisableCombo()
+        {
+            animator.SetBool("canDoCombo", false);
         }
 
 

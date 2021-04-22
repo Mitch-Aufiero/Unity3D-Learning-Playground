@@ -23,10 +23,12 @@ namespace Combat
         public Collider collider;
        
         public bool FinishedAttack = false;
+       
+
 
 
         bool canAttack = true;
-
+        private int comboCount = 0;
 
         void Start()
         {
@@ -49,15 +51,20 @@ namespace Combat
 
         public void PerformAttack(Damage dmg)
         {
-            if (canAttack)
+            bool canDoCombo = animator.GetBool("canDoCombo");
+
+            if (canAttack|| canDoCombo)
             {
+                   
                 canAttack = false;
                 FinishedAttack = false;
                 damage = dmg;
-                StartCoroutine(Attack());
+               
 
+                StartCoroutine(Attack());
             }
         }
+
 
         public void PerformSpecialAttack()
         {
@@ -85,6 +92,9 @@ namespace Combat
             }
         }
 
+
+      
+
         IEnumerator AttackCooldown()
         {
 
@@ -96,18 +106,20 @@ namespace Combat
         IEnumerator Attack()
         {
 
-            animator.SetTrigger("Attack_" + WeaponType);
+
+            animator.SetTrigger("Attack_" + WeaponType );
             // wait for animation to finish playing 
             do
             {
                 yield return new WaitForEndOfFrame();
-            } while (animator.GetCurrentAnimatorStateInfo(1).normalizedTime < 1.0f);
+            } while (animator.GetCurrentAnimatorStateInfo(1).normalizedTime <.7f);
 
+            canAttack = false;
 
 
 
             FinishedAttack = true;
-            canAttack = false;
+            comboCount++;
            
             StartCoroutine(AttackCooldown());
 

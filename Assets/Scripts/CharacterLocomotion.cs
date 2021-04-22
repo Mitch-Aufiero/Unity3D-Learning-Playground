@@ -11,10 +11,12 @@ public class CharacterLocomotion : MonoBehaviour
     public float airControl;
     public float jumpDamping;
     public float groundSpeed;
+    public float sprintSpeed;
     public float rollSpeed;
     public float pushPower;
 
     Animator animator;
+    AnimatorController animControl;
     CharacterController cc;
     Vector2 input;
 
@@ -22,12 +24,14 @@ public class CharacterLocomotion : MonoBehaviour
     Vector3 velocity;
     bool isJumping;
     bool isRolling;
+    bool isSprinting;
   
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        animControl = GetComponent<AnimatorController>();
         cc = GetComponent<CharacterController>();
     }
 
@@ -39,8 +43,14 @@ public class CharacterLocomotion : MonoBehaviour
         input.x = horizontal;
         input.y = vertical;
 
-        animator.SetFloat("InputX", input.x);
-        animator.SetFloat("InputY", input.y);
+        if (!isRolling)
+        {
+            animator.SetFloat("InputX", input.x);
+            animator.SetFloat("InputY", input.y);
+
+        }
+
+             
     }
 
 
@@ -73,6 +83,7 @@ public class CharacterLocomotion : MonoBehaviour
         Vector3 stepForwardAmout = rootMotion * rollSpeed;
         Vector3 stepDownAmount = Vector3.down * stepDownRate;
 
+
         cc.Move(stepForwardAmout + stepDownAmount);
 
         rootMotion = Vector3.zero;
@@ -89,8 +100,11 @@ public class CharacterLocomotion : MonoBehaviour
 
     private void UpdateOnGround()
     {
-        Vector3 stepForwardAmout = rootMotion * groundSpeed;
+
+        Vector3 stepForwardAmout = rootMotion * (!isRolling ? groundSpeed :  rollSpeed) ;
+
         Vector3 stepDownAmount = Vector3.down * stepDownRate;
+        
 
         cc.Move(stepForwardAmout + stepDownAmount);
         rootMotion = Vector3.zero;
