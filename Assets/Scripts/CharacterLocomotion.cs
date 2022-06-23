@@ -80,14 +80,7 @@ public class CharacterLocomotion : MonoBehaviour
             return;
 
         isRolling = true;
-        Vector3 stepForwardAmout = rootMotion * rollSpeed;
-        Vector3 stepDownAmount = Vector3.down * stepDownRate;
-
-
-        cc.Move(stepForwardAmout + stepDownAmount);
-
-        rootMotion = Vector3.zero;
-        //animator.SetFloat("InputY", 1);
+    
         animator.SetTrigger("Roll");
     }
 

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 4091013031662831351}
   - component: {fileID: 7267937002704611750}
   - component: {fileID: 7365877079982049776}
+  - component: {fileID: -2774203409882193359}
   m_Layer: 9
   m_Name: enemyDagger
   m_TagString: Enemy
@@ -121,6 +122,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   config: {fileID: 11400000, guid: 2f1d4886d5f1d2d45a1a192dad8bfae5, type: 2}
   mesh: {fileID: 0}
+  health: {fileID: 0}
   sensor: {fileID: 0}
   playerTransform: {fileID: 0}
   weapon: {fileID: 0}
@@ -181,6 +183,7 @@ MonoBehaviour:
   VulnerableDamageTypes:
   - {fileID: 11400000, guid: 87b389376108e0d4b90c580da7093543, type: 2}
   vulnerableParticle: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!65 &4091013031662831351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -224,6 +227,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerRightHand: {fileID: 769723564379858325}
   MainWeapon: {fileID: 6269107185300970884}
+  animator: {fileID: 0}
+--- !u!114 &-2774203409882193359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769723562626139866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec6d0ad2ed154b42b8b41d439f87a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RelativeObjectSize: {x: 0, y: 0, z: 0}
 --- !u!1 &769723562760005419
 GameObject:
   m_ObjectHideFlags: 0

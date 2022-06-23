@@ -60,7 +60,7 @@ public class MazeGenerator : MonoBehaviour
         MapMaze();
 
 
-        navGenerator.Generate();
+        //navGenerator.Generate();
 
         PlayerCharacter.SetActive(true);
     }
@@ -107,11 +107,11 @@ public class MazeGenerator : MonoBehaviour
                 if(j> 0 && i > 0)
                 {
                     Floor = Instantiate(floor, new Vector3(0, 0, 1), Quaternion.identity);
-                    Floor.transform.localPosition = new Vector3((i * mazeOffset) - (mazeOffset / 2), 1, (j * mazeOffset) - (mazeOffset / 2));
+                    Floor.transform.localPosition = new Vector3((i * mazeOffset) - (mazeOffset / 2), -2, (j * mazeOffset) - (mazeOffset / 2));
 
                     Floor.transform.SetParent(MazeCell.transform);
                     Floor.name = "Floor";
-                    navGenerator.surfaces.Add(Floor.GetComponent<NavMeshSurface>());
+                    //navGenerator.surfaces.Add(Floor.GetComponent<NavMeshSurface>());
                 }
 
                 Grid[i, j] = new Cell(Wall, RotWall, Floor);
@@ -195,13 +195,14 @@ public class MazeGenerator : MonoBehaviour
     {
         bool playerSpawnChosen = false;
 
-
         foreach (Transform mazeCell in MazeGrid.transform)
         {
             foreach (Transform rayOriginator in mazeCell.transform)
             {
                 if(rayOriginator.name == "Floor")// which ray didn't hit a wall? face container or mob the same direction
                 {
+                    rayOriginator.transform.position = new Vector3(rayOriginator.transform.position.x, rayOriginator.transform.position.y + 1, rayOriginator.transform.position.z);
+
                     int wallCount = 0;
                     List<Vector3> remainingWallsDirections = new List<Vector3>();
                     List<Vector3> missingWallsDirections = new List<Vector3>();
@@ -244,7 +245,6 @@ public class MazeGenerator : MonoBehaviour
                         missingWallsDirections.Add(new Vector3(0, 180, 0));
                     }
 
-
                     string cellType = markCellType(wallCount);
                     mazeCell.gameObject.name = cellType;
                     if(cellType == "DeadEnd")
@@ -269,7 +269,7 @@ public class MazeGenerator : MonoBehaviour
                     if(cellType == "Coridor")
                     {
                         int index = Random.Range(0, missingWallsDirections.Count);
-                        SpawnRandomObject(CoridorSpawns, rayOriginator.gameObject, new Vector3(0, 2, 0), missingWallsDirections[index]) ;
+                        SpawnRandomObject(CoridorSpawns, rayOriginator.gameObject, new Vector3(0, .5f, 0), missingWallsDirections[index]) ;
                     }
                        
                     if (cellType == "Hall")

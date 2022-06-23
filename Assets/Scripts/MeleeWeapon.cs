@@ -109,15 +109,22 @@ namespace Combat
 
             animator.SetTrigger("Attack_" + WeaponType );
             // wait for animation to finish playing 
-            do
+            int w = animator.GetCurrentAnimatorClipInfo(0).Length;
+            string[] clipName = new string[w];
+            for (int i = 0; i < w; i += 1)
             {
-                yield return new WaitForEndOfFrame();
-            } while (animator.GetCurrentAnimatorStateInfo(1).normalizedTime <.7f);
+                clipName[i] = animator.GetCurrentAnimatorClipInfo(0)[i].clip.name;
+            }
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack_" + WeaponType)){
+
+                yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            }
+           
 
             canAttack = false;
 
 
-
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(1).normalizedTime);
             FinishedAttack = true;
             comboCount++;
            

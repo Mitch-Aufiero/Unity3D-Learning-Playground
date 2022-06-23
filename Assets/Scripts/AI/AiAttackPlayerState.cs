@@ -32,70 +32,15 @@ public class AiAttackPlayerState : AiState
 
     }
 
-    private void GetNewAttack(AiAgent agent)
-    {
-        Vector3 targetsDirection = playerTransform.position - agent.transform.position;
-        float viewableAngle = Vector3.Angle(targetsDirection, agent.transform.forward);
+   
 
-
-        int maxScore = 0;
-
-        for (int i = 0; i < agent.config.AiAttacks.Length; i++)
-        {
-            AIAttackAction aiAttack = agent.config.AiAttacks[i];
-            if(agent.navMeshAgent.remainingDistance <= aiAttack.maximumDistanceNeededToAttack
-                && agent.navMeshAgent.remainingDistance >= aiAttack.minimumDistanceNeededToAttack)
-            {
-                if(viewableAngle <= aiAttack.maximumAttackAngle 
-                    && viewableAngle <= aiAttack.maximumAttackAngle)
-                {
-                    maxScore += aiAttack.attackScore;
-                }
-            }
-        }
-
-
-        int randomValue = UnityEngine.Random.Range(0, maxScore);
-        int tempScore = 0;
-
-        for (int i = 0; i < agent.config.AiAttacks.Length; i++)
-        {
-            AIAttackAction aiAttack = agent.config.AiAttacks[i];
-            if (agent.navMeshAgent.remainingDistance <= aiAttack.maximumDistanceNeededToAttack
-                && agent.navMeshAgent.remainingDistance >= aiAttack.minimumDistanceNeededToAttack)
-            {
-                if (viewableAngle <= aiAttack.maximumAttackAngle
-                    && viewableAngle <= aiAttack.maximumAttackAngle)
-                {
-                    if (currentAttack != null)
-                        return;
-                    tempScore += aiAttack.attackScore;
-
-                    if(tempScore > randomValue)
-                    {
-                        currentAttack = aiAttack;
-                    }
-                }
-            }
-        }
-
-    }
-
-    private void AttackTarget(AiAgent agent)
-    {
-        if(currentAttack == null)
-        {
-            GetNewAttack(agent);
-        }
-
-    }
 
     public void Update(AiAgent agent)
     {
        
 
 
-        if (agent.navMeshAgent.remainingDistance > attackRange || agent.weapon.FinishedAttack == true) 
+        if ( agent.weapon.FinishedAttack == true) 
         {
             agent.navMeshAgent.destination = playerTransform.position;
             agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
@@ -117,6 +62,7 @@ public class AiAttackPlayerState : AiState
 
     public void Exit(AiAgent agent)
     {
+        Debug.Log("leaving attack");
     }
 
     private void RotateTowards(AiAgent agent,Transform target)
