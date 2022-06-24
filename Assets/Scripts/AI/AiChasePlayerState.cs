@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AiChasePlayerState : AiState
 {
-    public Transform playerTransform;
+    public List<Transform> playerTransforms;
+    public Transform targetPlayerTransform;
     float timer = 0.0f;
 
     public AiStateID GetId()
@@ -13,10 +14,22 @@ public class AiChasePlayerState : AiState
     }
     public void Enter(AiAgent agent)
     {
-        
-        if(playerTransform == null)
+
+        if (targetPlayerTransform == null)
         {
-            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            targetPlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+
+
+        if (playerTransforms == null)
+        {
+            playerTransforms = new List<Transform>();
+            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
+            {
+
+                playerTransforms.Add(obj.GetComponent<Transform>());
+            }
         }
 
         agent.navMeshAgent.isStopped = false;
@@ -31,28 +44,32 @@ public class AiChasePlayerState : AiState
         timer -= Time.deltaTime;
         if (!agent.navMeshAgent.hasPath)
         {
-            agent.navMeshAgent.destination = playerTransform.position;
+            agent.navMeshAgent.destination = targetPlayerTransform.position;
         }
 
         if (timer < 0.0f)
         {
-            Vector3 direction = (playerTransform.position - agent.navMeshAgent.destination);
+            Vector3 direction = (targetPlayerTransform.position - agent.navMeshAgent.destination);
             direction.y = 0;
             //if(direction.sqrMagnitude > agent.config.maxDistance * agent.config.maxDistance)
             {
               //  if(agent.navMeshAgent.pathStatus != UnityEngine.AI.NavMeshPathStatus.PathPartial)
                 {
-                    agent.navMeshAgent.destination = playerTransform.position;
+                    agent.navMeshAgent.destination = targetPlayerTransform.position;
                 }
             }
             timer = agent.config.chaseResetTimer;
         }
 
-        if (agent.navMeshAgent.remainingDistance < agent.config.attackStoppingDistance)
-        {
 
-            agent.stateMachine.ChangeState(AiStateID.AttackPlayer);
+        foreach (Transform playerTransform in playerTransforms)
+        {
+            if (agent.attackSensor.IsInRangeOf(playerTransform.gameObject))
+            {
+                agent.stateMachine.ChangeState(AiStateID.AttackPlayer);
+            }
         }
+
     }
 
     public void Exit(AiAgent agent)

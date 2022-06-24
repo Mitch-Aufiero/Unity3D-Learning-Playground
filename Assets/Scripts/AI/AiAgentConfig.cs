@@ -12,6 +12,14 @@ public class AiAgentConfig : ScriptableObject
     public float attackStoppingDistance;
     public float attackCoolDown;
     public float attackDamage;
+    public float attackDelay = 1.5f;
+    public float attackRecovery = 2.0f;
+
+    public float attackConeAngle = 30;
+    public float attackConeDistance = 3;
+    public float attackConeHeight = 1.0f;
+
+    public LayerMask occlusionLayers;
 
     public AIAttackAction[] AiAttacks;
 

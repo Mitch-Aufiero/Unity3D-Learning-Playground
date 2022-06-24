@@ -7,11 +7,12 @@ using Combat;
 public class AiAttackPlayerState : AiState
 {
     public Transform playerTransform;
-    float attackRange = 0.0f;
-    float rotationSpeed =100f;
 
     private AIAttackAction currentAttack;
-
+    private float attackDelayTimer;
+    private float attackRecoveryTimer;
+    private bool attacking;
+    private bool canAttack;
 
     public AiStateID GetId()
     {
@@ -19,15 +20,16 @@ public class AiAttackPlayerState : AiState
     }
     public void Enter(AiAgent agent)
     {
-        
+        attacking = false;
+        canAttack = true;
+
+
         if (playerTransform == null)
         {
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         agent.navMeshAgent.isStopped = true;
-
-        attackRange = agent.config.attackStoppingDistance;
      
 
     }
@@ -37,38 +39,41 @@ public class AiAttackPlayerState : AiState
 
     public void Update(AiAgent agent)
     {
-       
-
-
-        if ( agent.weapon.FinishedAttack == true) 
+        if (attacking == false && canAttack == true)
         {
-            agent.navMeshAgent.destination = playerTransform.position;
+            agent.attackWarningMesh.SetActive(true);
+            attacking = true;
+            attackDelayTimer = agent.config.attackDelay;
+        }
+        else if (attackDelayTimer >= 0.0f && attacking == true)
+        {
+            attackDelayTimer -= Time.deltaTime;
+        }
+        else if(attackDelayTimer <= 0.0f && attacking == true)
+        {
+            agent.attackWarningMesh.SetActive(false);
+            attacking = false;
+            canAttack = false;
+            attackRecoveryTimer = agent.config.attackRecovery;
+        }
+        else if (attackRecoveryTimer >= 0.0f)
+        {
+            attackRecoveryTimer -= Time.deltaTime;
+        }
+        else if (attackRecoveryTimer <= 0.0f )
+        {
             agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
         }
-        UpdateAttacking(agent);
 
-    }
 
-    private void UpdateAttacking(AiAgent agent)
-    {
-        //RotateTowards(agent, playerTransform);
-        agent.weapon.PerformAttack(agent.weapon.damage);
 
 
     }
 
-
-
-
+  
     public void Exit(AiAgent agent)
     {
-        Debug.Log("leaving attack");
+        agent.attackWarningMesh.SetActive(false);
     }
 
-    private void RotateTowards(AiAgent agent,Transform target)
-    {
-        Vector3 direction = (target.position - agent.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-    }
 }

@@ -30,24 +30,13 @@ public class AiWanderState : AiState
         }
         if (!agent.navMeshAgent.hasPath)
         {
-            WorldBounds worldBounds = GameObject.FindObjectOfType<WorldBounds>();
-            Vector3 min = worldBounds.min.position;
-            Vector3 max = worldBounds.max.position;
-
-            Vector3 randomPosition = new Vector3(
-                Random.Range(min.x, max.x),
-                Random.Range(min.y, max.y),
-                Random.Range(min.z, max.z));
-
-            agent.navMeshAgent.destination = randomPosition;
+            agent.navMeshAgent.destination = findRandomPositionInRange();
         }
 
         foreach(Transform playerTransform in playerTransforms)
         { 
             if (agent.sensor.IsAwareOf(playerTransform.gameObject))
             {
-
-                
                 agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
             }
         }
@@ -56,5 +45,22 @@ public class AiWanderState : AiState
     public void Exit(AiAgent agent)
     {
 
+    }
+
+
+
+    private Vector3 findRandomPositionInRange()
+    {
+
+        WorldBounds worldBounds = GameObject.FindObjectOfType<WorldBounds>();
+        Vector3 min = worldBounds.min.position;
+        Vector3 max = worldBounds.max.position;
+
+        Vector3 randomPosition = new Vector3(
+            Random.Range(min.x, max.x),
+            Random.Range(min.y, max.y),
+            Random.Range(min.z, max.z));
+
+        return randomPosition;
     }
 }

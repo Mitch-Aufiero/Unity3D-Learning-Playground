@@ -14,7 +14,10 @@ public class AiAgent : MonoBehaviour
     public SkinnedMeshRenderer mesh;
     public EnemyHealth health;
     public AiSensor sensor;
+    public AiAttackSensor attackSensor;
     public GameObject playerTransform;
+    public GameObject attackWarningMesh;
+
 
     public MeleeWeapon weapon;
 
@@ -26,6 +29,7 @@ public class AiAgent : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.enabled = true;
         sensor = GetComponent<AiSensor>();
+        attackSensor = GetComponent<AiAttackSensor>();
         weapon = GetComponentInChildren<MeleeWeapon>();
         weapon.AttackCoolDown = config.attackCoolDown;
         weapon.damage.damageAmount = config.attackDamage;

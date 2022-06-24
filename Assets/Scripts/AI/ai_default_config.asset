@@ -16,3 +16,10 @@ MonoBehaviour:
   attackStoppingDistance: 2.5
   attackCoolDown: 3
   attackDamage: 8
+  attackConeAngle: 30
+  attackConeDistance: 3
+  attackConeHeight: 1
+  occlusionLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  AiAttacks: []
