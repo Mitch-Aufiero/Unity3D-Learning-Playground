@@ -13,6 +13,7 @@ public class AiAttackPlayerState : AiState
     private float attackRecoveryTimer;
     private bool attacking;
     private bool canAttack;
+    AiAgent agent;
 
     public AiStateID GetId()
     {
@@ -23,6 +24,8 @@ public class AiAttackPlayerState : AiState
         attacking = false;
         canAttack = true;
 
+        this.agent = agent;
+
 
         if (playerTransform == null)
         {
@@ -30,8 +33,8 @@ public class AiAttackPlayerState : AiState
         }
 
         agent.navMeshAgent.isStopped = true;
-     
 
+        displayIndicator(agent);
     }
 
    
@@ -39,11 +42,9 @@ public class AiAttackPlayerState : AiState
 
     public void Update(AiAgent agent)
     {
-        if (attacking == false && canAttack == true)
+       /* if (attacking == false && canAttack == true)
         {
-            agent.attackWarningMesh.SetActive(true);
-            attacking = true;
-            attackDelayTimer = agent.config.attackDelay;
+            
         }
         else if (attackDelayTimer >= 0.0f && attacking == true)
         {
@@ -51,10 +52,7 @@ public class AiAttackPlayerState : AiState
         }
         else if(attackDelayTimer <= 0.0f && attacking == true)
         {
-            agent.attackWarningMesh.SetActive(false);
-            attacking = false;
-            canAttack = false;
-            attackRecoveryTimer = agent.config.attackRecovery;
+            executeAttack(agent);
         }
         else if (attackRecoveryTimer >= 0.0f)
         {
@@ -62,18 +60,38 @@ public class AiAttackPlayerState : AiState
         }
         else if (attackRecoveryTimer <= 0.0f )
         {
+
+            agent.damageCollider.SetActive(false);
             agent.stateMachine.ChangeState(AiStateID.ChasePlayer);
         }
 
 
-
+        */
 
     }
+
+
+    private void displayIndicator(AiAgent agent)
+    {
+        attacking = true;
+        attackDelayTimer = agent.config.attackDelay;
+        agent.animator.SetTrigger("Attack_Spear");
+    }
+
+    private void executeAttack(AiAgent agent)
+    {
+        attacking = false;
+        canAttack = false;
+        attackRecoveryTimer = agent.config.attackRecovery;
+    }
+
+ 
 
   
     public void Exit(AiAgent agent)
     {
         agent.attackWarningMesh.SetActive(false);
+        agent.damageCollider.SetActive(false);
     }
 
 }

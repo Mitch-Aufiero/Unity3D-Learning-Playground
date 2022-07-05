@@ -13,12 +13,13 @@ namespace Combat {
         public GameObject healthBarUI;
         public Slider healthSlider;
         public DamageType[] VulnerableDamageTypes;
-        public ParticleSystem vulnerableParticle;
+        public ParticleSystem hitParticle;
         public AiAgent agent;
+        public AudioSource enemyAudioSource;
 
         Camera cameraMain;
 
-        Animator animator;
+        public Animator animator;
         Collider collider;
 
 
@@ -36,29 +37,39 @@ namespace Combat {
         }
 
 
-        public void TakeDamage(Damage damage)
+        public bool TakeDamage(Damage damage)
         {
-       
+            bool wasVulnerable = false;
+            float damageAmount = damage.damageAmount;
+
+            enemyAudioSource.clip = damage.hitAudio;
+
             if (damage.damageType != null)
             {
                 foreach(DamageType type in VulnerableDamageTypes)
                 {
                     if(type == damage.damageType)
                     {
+                        wasVulnerable = true;
+                        
 
-                        damage.damageAmount *= 1.5f;
-                        vulnerableParticle.transform.position = damage.hitPosition.point;
-                        vulnerableParticle.transform.forward = damage.hitPosition.normal;
-                        vulnerableParticle.Emit(1);
+
+                        damageAmount *= 1.5f;
 
                     }
                 }
             }
 
             animator.SetTrigger("Damaged");
-            health -= damage.damageAmount;
+
+            enemyAudioSource.Play();
+            health -= damageAmount;
             CalculateHealth();
+            return wasVulnerable;
+
         }
+
+      
 
         void CalculateHealth()
         {

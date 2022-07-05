@@ -13,6 +13,7 @@ namespace Combat {
         public float damageAmount;
         public float damageDelay;
         public float attackRadius = 10.0f;
+        public Damage damage;
 
         public float coolDown = 0.0f;
         bool canAttack = true;
@@ -78,7 +79,7 @@ namespace Combat {
                 EnemyHealth enemyHealth;
                 if (enemyHealth = hit.transform.GetComponent<EnemyHealth>())
                 {
-                    enemyHealth.TakeDamage(new Damage(damageType, damageAmount, damageDelay));
+                    enemyHealth.TakeDamage(damage);
 
                 }
             }

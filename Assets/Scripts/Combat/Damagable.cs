@@ -8,7 +8,7 @@ namespace Combat
     public interface Damagable
     {
 
-        public void TakeDamage(Damage damage);
+        public bool TakeDamage(Damage damage);
     
     }
 

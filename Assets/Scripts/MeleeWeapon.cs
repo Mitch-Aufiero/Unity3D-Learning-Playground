@@ -9,14 +9,16 @@ namespace Combat
     {
         public Animator animator;
         public LayerMask damageLayer;
-        
+        public Damage damage;
+        public ParticleSystem  hitParticle;
+        public ParticleSystem  vulnerableHitParticle;
 
 
         // this data should come from item system
         public string WeaponType = "Sword";
         public List<BaseStat> Stats { get; set; }
 
-        public Damage damage { get; set; }
+      
         public float AttackCoolDown { get ; set ; }
 
         // --------------------
@@ -41,13 +43,12 @@ namespace Combat
 
 
             // temp values until inventory system is created
-            damage = new Damage(new DamageType(), 5, 0);
+            
             AttackCoolDown = 0;
 
 
         }
 
-        
 
         public void PerformAttack(Damage dmg)
         {
@@ -79,7 +80,29 @@ namespace Combat
                 EnemyHealth enemyHealth;
                 if (enemyHealth = col.transform.GetComponent<EnemyHealth>())
                 {
-                    enemyHealth.TakeDamage(damage);
+                    
+                    if (enemyHealth.TakeDamage(damage))
+                    {
+                        vulnerableHitParticle.transform.position = col.ClosestPointOnBounds(transform.position);
+                        //vulnerableHitParticle.transform.forward = damage.hitPosition.normal;
+                        foreach (ParticleSystem particleChildren in vulnerableHitParticle.GetComponentsInChildren<ParticleSystem>())
+                        {
+                            particleChildren.Emit(1);
+                        }
+                    }
+                    else
+                    {
+                        hitParticle.transform.position = col.ClosestPointOnBounds(transform.position);
+                        //  hitParticle.transform.forward = damage.hitPosition.normal;
+                        foreach (ParticleSystem particleChildren in hitParticle.GetComponentsInChildren<ParticleSystem>())
+                        {
+                            particleChildren.Emit(1);
+                        }
+                    }
+                        
+
+
+                  
                 }
                 else
                 {
@@ -124,7 +147,7 @@ namespace Combat
             canAttack = false;
 
 
-            Debug.Log(animator.GetCurrentAnimatorStateInfo(1).normalizedTime);
+          
             FinishedAttack = true;
             comboCount++;
            

@@ -17,8 +17,10 @@ namespace Combat
         }
 
         public ActiveWeapon.WeaponSlot weaponSlot;
+        public Damage damage;
         public bool isFiring = false;
         public int fireRate = 25;
+        public bool hasAmmo = true;
         public int ammoCount = 6;
         public int clipSize = 6;
         public float damageAmount;
@@ -57,11 +59,12 @@ namespace Combat
 
         private void FireBullet()
         {
-            if(ammoCount<= 0)
+            if(ammoCount> 0 && hasAmmo)
             {
+                ammoCount--;
                 return;
             }
-            ammoCount--;
+
             muzzleFlash.Emit(1);
 
             Vector3 velocity = (raycastDestination.position - raycastOrigin.position).normalized * bulletSpeed;
@@ -173,16 +176,23 @@ namespace Combat
                 hitEffect.transform.position = hitInfo.point;
                 hitEffect.transform.forward = hitInfo.normal;
                 bullet.time = bulletsMaxLifeTime;
-
-
                 bullet.tracer.transform.position = hitInfo.point;
 
-                hitEffect.Emit(1);
+                foreach (ParticleSystem childParticles in hitEffect.GetComponentsInChildren<ParticleSystem>())
+                {
+                   childParticles.transform.position = hitInfo.point;
+                   childParticles.transform.forward = hitInfo.normal;
 
+                    childParticles.Emit(1);
+                }
+
+
+                //hitEffect.Emit(1);
+               
                 EnemyHealth enemyHealth;
                 if (enemyHealth = hitInfo.transform.GetComponent<EnemyHealth>())
                 {
-                    enemyHealth.TakeDamage(new Damage( damageType, damageAmount, 0.0f));
+                    enemyHealth.TakeDamage(damage);
 
                 }
 

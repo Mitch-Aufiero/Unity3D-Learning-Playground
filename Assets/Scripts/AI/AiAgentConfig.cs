@@ -13,7 +13,8 @@ public class AiAgentConfig : ScriptableObject
     public float attackCoolDown;
     public float attackDamage;
     public float attackDelay = 1.5f;
-    public float attackRecovery = 2.0f;
+    public float attackRecovery = .5f;
+    public AnimationClip attackAnimation;
 
     public float attackConeAngle = 30;
     public float attackConeDistance = 3;

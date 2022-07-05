@@ -17,6 +17,8 @@ public class AiAgent : MonoBehaviour
     public AiAttackSensor attackSensor;
     public GameObject playerTransform;
     public GameObject attackWarningMesh;
+    public GameObject damageCollider;
+    public Animator animator;
 
 
     public MeleeWeapon weapon;
@@ -30,9 +32,6 @@ public class AiAgent : MonoBehaviour
         navMeshAgent.enabled = true;
         sensor = GetComponent<AiSensor>();
         attackSensor = GetComponent<AiAttackSensor>();
-        weapon = GetComponentInChildren<MeleeWeapon>();
-        weapon.AttackCoolDown = config.attackCoolDown;
-        weapon.damage.damageAmount = config.attackDamage;
 
         stateMachine = new AiStateMachine(this);
         stateMachine.RegisterState(new AiChasePlayerState());

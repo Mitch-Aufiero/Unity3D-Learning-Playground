@@ -7,6 +7,7 @@ public class AttackAOETriggerAction : MonoBehaviour
     public DamageType damageType;
     public float damageAmount;
     public float damageDelay;
+    public Damage damage;
 
     public void Start()
     {
@@ -14,6 +15,8 @@ public class AttackAOETriggerAction : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<PlayerHealth>().TakeDamage(new Damage(damageType,damageAmount, damageDelay));
+        PlayerHealth health;
+        if (health = other.gameObject.GetComponent<PlayerHealth>())
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 }

@@ -35,13 +35,16 @@ namespace Combat
         }
 
 
-        public void TakeDamage(Damage damage ) // do math related to how much damage player should take
+        public bool TakeDamage(Damage damage ) // do math related to how much damage player should take
         {
+            bool wasVulnerable = false;
             if (!invulnerable) {
                 animator.SetTrigger("Damaged");
                 health -= damage.damageAmount;
                 CalculateHealth();
             }
+
+            return wasVulnerable;
         }
 
         void CalculateHealth()

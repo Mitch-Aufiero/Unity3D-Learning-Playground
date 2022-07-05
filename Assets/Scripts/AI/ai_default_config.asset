@@ -16,6 +16,9 @@ MonoBehaviour:
   attackStoppingDistance: 2.5
   attackCoolDown: 3
   attackDamage: 8
+  attackDelay: 1
+  attackRecovery: 2
+  attackAnimation: {fileID: 7400000, guid: a58bbaee585bb564ab46d605aa9c412d, type: 2}
   attackConeAngle: 30
   attackConeDistance: 3
   attackConeHeight: 1

@@ -2,19 +2,18 @@
 
 namespace Combat
 {
-    public class Damage 
+    
+    [CreateAssetMenu(menuName = "DungeonRPScripts/Damage")]
+    public class Damage : ScriptableObject
     {
         public DamageType damageType;
         public float damageAmount;
         public float damageDelay;
         public RaycastHit hitPosition;
+        public AudioClip hitAudio;
+        public AudioClip vulnerableHitAudio;
 
-        public Damage(DamageType cDamageType, float cDamageAmount, float cDamageDelay)
-        {
-            this.damageType = cDamageType;
-            this.damageAmount = cDamageAmount;
-            this.damageDelay = cDamageDelay;
-        }
+
 
     }
 }

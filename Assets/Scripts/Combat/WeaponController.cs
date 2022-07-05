@@ -10,6 +10,7 @@ namespace Combat
 
         public GameObject PlayerRightHand;
         public MeleeWeapon MainWeapon;
+        public RaycastWeapon RangedWeapon;
 
         public Animator animator;
         
@@ -30,7 +31,10 @@ namespace Combat
 
         private Damage CalculateDamage()
         {
-            Damage dmg = new Damage(MainWeapon.damage.damageType, MainWeapon.damage.damageAmount, MainWeapon.damage.damageDelay);
+            Damage dmg;
+            dmg = MainWeapon.damage;
+             
+
            // add character stats per weaponprimary stat etc.
            // dmg.damageAmount += CalculateCrit(dmg.damageAmount);
             
