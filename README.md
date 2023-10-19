@@ -39,7 +39,7 @@ Feel free to explore the codebase, provide feedback, or even collaborate. I'm al
 
 ## License
 
-This project is open-source and is licensed under the MIT License. See the [LICENSE](LICENSE) file for full details.
+This project is open-source and is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for full details.
 
 ---
 
