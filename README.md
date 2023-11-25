@@ -18,7 +18,21 @@ Welcome to my Unity 3D Learning Playground! This repository represents my explor
 ### 🌍 **Procedural Map Generation**
 - Multiple procedural generation methodologies ensure diverse and unpredictable terrains:
   1. **Overall Map Generation**: Constructed based on heightmaps, determining altitude variances, and terrain types to craft varied landscapes.
-  2. **Dungeon Generation**: Implements a **randomized depth-first search** technique, also known as the recursive backtracking algorithm. This not only shapes the dungeon layout but also strategically places objects depending on room dimensions.
+     We can controll the visuals of the generated over world. It uses perlin noise to generate a heightmap. The `Regions` control the color of the heightmap at the specified range.
+     ![image](https://github.com/Mitch-Aufiero/Unity3D-Learning-Playground/assets/122287506/26b3ae12-d3d4-4b4c-9994-da28ba34400f)
+     The resulting over world map will look something like this. You could replace the color picker with an actual texture for more detailed maps.
+     ![image](https://github.com/Mitch-Aufiero/Unity3D-Learning-Playground/assets/122287506/a6ab49a7-14c1-40d8-9ab6-8082e7bf043e)
+
+
+  3. **Dungeon Generation**: Implements a **randomized depth-first search** technique, also known as the recursive backtracking algorithm. This not only shapes the dungeon layout but also strategically places objects depending on room dimensions.
+     We can control look and size of the maze with the wall, floor and height/width values.
+     For spawning prefabs in the maze there are 3 types of spawns which are based on the number of walls each cell has (dead ends=3 walls; coridors=2 walls; hallways=1 wall)
+     ![image](https://github.com/Mitch-Aufiero/Unity3D-Learning-Playground/assets/122287506/8e0e41c0-2521-4261-9736-f66a84cf2002)
+     The resulting maze will look something like this
+     ![image](https://github.com/Mitch-Aufiero/Unity3D-Learning-Playground/assets/122287506/8d56ba71-29d8-4d67-a6ce-6141ad56f9b2)
+
+     
+
 
 ### 🏹 **Ranged Weapons System**
 - A comprehensive ranged weaponry module:
