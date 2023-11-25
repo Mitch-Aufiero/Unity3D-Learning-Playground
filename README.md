@@ -40,7 +40,12 @@ Welcome to my Unity 3D Learning Playground! This repository represents my explor
 - A comprehensive ranged weaponry module:
   - **Bullet Speed Control**: Adjust the velocity of projectiles.
   - **Drop Off**: Simulate realistic bullet drop over distance.
+ Example:
+![image](https://github.com/Mitch-Aufiero/Unity3D-Learning-Playground/assets/122287506/661b46b8-3448-4bcb-b042-9dd5adaeb347)
+
   - **Pattern & Spread**: Control firing patterns and bullet spread for weapons, offering varied combat strategies.
+![image](https://github.com/Mitch-Aufiero/Unity3D-Learning-Playground/assets/122287506/7ce3ab23-6d79-4f09-921b-2ebdf5ea99cb)
+
 
 ## What's Inside?
 
