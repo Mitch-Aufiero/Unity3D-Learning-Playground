@@ -9,6 +9,9 @@ Welcome to my Unity 3D Learning Playground! This repository represents my explor
   - Uses **hitboxes** for precise combat interactions.
   - Incorporates **dodge rolling** for dynamic player movement and evasion.
 
+    ![2023-11-24 20-57-44 (2)](https://github.com/Mitch-Aufiero/Unity3D-Learning-Playground/assets/122287506/255cf939-8230-4262-985b-387f69c8152a)
+
+
 ### 🤖 **AI State Machines**
 - AI characters with responsive behaviors:
   - **Patrol**: Roam predefined paths or areas.
@@ -45,14 +48,15 @@ Welcome to my Unity 3D Learning Playground! This repository represents my explor
 
   - **Pattern & Spread**: Control firing patterns and bullet spread for weapons, offering varied combat strategies.
 ![image](https://github.com/Mitch-Aufiero/Unity3D-Learning-Playground/assets/122287506/7ce3ab23-6d79-4f09-921b-2ebdf5ea99cb)
+  
+  Using this system you can create all sorts of ranged weapons, from pistols to fireballs.
 
 
 ## What's Inside?
 
 Beyond the key features, this repository is a testament to my endeavors in understanding the underpinnings of:
-- **3D Shaders**: Crafting realistic light interactions and visual effects.
-- **Engine Physics**: Ensuring objects behave with realism within the virtual world.
-- **3D Modeling & Texturing**: Creating objects from scratch and enveloping them in textures to enhance visual realism.
+- **3D Shaders**: Crafting realistic water interactions and visual effects.
+- **3D Modeling & Texturing**: Created objects from scratch.
 
 ## Get Involved!
 
